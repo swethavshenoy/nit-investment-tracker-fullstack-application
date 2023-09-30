@@ -1,10 +1,13 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, Button, IconButton, Box, Container, Stack, Grid, Card, CardHeader, CardContent, CardActions } from '@mui/material';
-import logo from '../images/logo.jpg';
-import graph from '../images/graph.jpg';
-import pic1 from '../images/pic1.jpg';
+import { AppBar, Toolbar, Typography, Button, IconButton, Container, Grid, Box, Stack, Card, CardHeader, CardContent, CardActions } from '@mui/material';
+import logo from '../../images/logo.jpg';
+import pic1 from '../../images/pic1.jpg';
+import graph from '../../images/hero-global.jpg';
+
+import './HomePage.css'
 
 const HomePage = () => {
+
     const tiers = [
         {
             title: 'Free',
@@ -55,16 +58,16 @@ const HomePage = () => {
                         <img src={logo} alt='Image1' height={50} width={50} />
                     </IconButton>
                     <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
-                        <a className='heading'>NIT</a>
-                        <Button color="warning">Features</Button>
-                        <Button color="warning">Pricing</Button>
-                        <Button color="warning">Resources</Button>
-                        <Button color="warning">ESG</Button>
-                        <Button color="warning">Suitable plans</Button>
-                        <Button color="warning">About Us</Button>
+                        <span className='heading'>NIT</span>
+                        <Button>Features</Button>
+                        <Button>Pricing</Button>
+                        <Button>Resources</Button>
+                        <Button>ESG</Button>
+                        <Button>Suitable plans</Button>
+                        <Button>About Us</Button>
                     </Typography>
-                    <Button color="warning">LogIn</Button>
-                    <Button color="warning">SignUp</Button>
+                    <Button>LogIn</Button>
+                    <Button>SignUp</Button>
                 </Toolbar>
             </AppBar>
             {/* Hero Unit */}
@@ -73,20 +76,20 @@ const HomePage = () => {
                     sx={{
                         pt: 8,
                         pb: 6,
-                        bgcolor: '#fdc880'
+                        background: 'radial-gradient(circle at 50% 50%, rgb(255, 214, 102), rgb(254, 173, 129), rgb(246, 167, 162), rgb(147, 156, 235)) 0% 0% / 400% 100%;'
                     }}
                 >
-                    <Container maxWidth="sm">
+                    <Container >
                         <Typography
                             component="h1"
                             variant="h3"
                             align="center"
-                            color="#AF0D24"
+                            color="#5a287d"
                             gutterBottom
                         >
                             Be the smarter investor
                         </Typography>
-                        <Typography variant="h5" align="center" color="#AF0D24" paragraph>
+                        <Typography variant="h5" align="center" color="#646068 " paragraph>
                             Powerful portfolio tracking software that lets you check your investments in one place with award-winning performance, dividend tracking and tax reporting.
                         </Typography>
                         <Stack
@@ -97,7 +100,7 @@ const HomePage = () => {
                         >
                             <Button className='box' variant="contained" sx={{ pt: 1 }} color="warning">Signup for free</Button>
                         </Stack>
-                        <img src={graph} alt='portfolio graph' height={643} width={604} />
+                        <img src={graph} alt='portfolio graph' width={700} height={536} />
                     </Container>
                 </Box>
             </main>
@@ -105,12 +108,12 @@ const HomePage = () => {
             <Container disableGutters maxWidth="sm" component="main" sx={{ pt: 2, pb: 2 }}>
                 <Typography
                     component="h1"
-                    variant="h2"
+                    variant="h3"
                     align="center"
                     color="text.primary"
                     gutterBottom
                 >
-                    Pricing
+                    Our Plans & Pricing
                 </Typography>
             </Container>
             {/* End hero unit */}
