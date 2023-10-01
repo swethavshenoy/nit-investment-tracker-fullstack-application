@@ -1,4 +1,4 @@
-const tiers = [
+export const tiersData = [
     {
         title: 'Free',
         price: '0',
@@ -40,3 +40,16 @@ const tiers = [
         buttonVariant: 'outlined',
     },
 ];
+
+export const navItems = ['Features', 'Pricing', 'Resources', 'ESG', 'Suitable plans', 'About Us'];
+
+export const reviewData = [
+    { rating: 5, reviewer: 'Nicki, September 13', title: 'I find NIT fantastic for…', description: 'I find NIT fantastic for recording, analysing and managing my investment portfolios. Very easy to use and very comprehensive reporting' },
+
+    { rating: 5, reviewer: 'Mike, September 15', title: 'Highly recommend NIT!', description: 'Was able to ditch my error-prone, time-consuming spreadsheet when I switched to NIT years ago. Love the accurate performance calculations and ease of use' },
+
+    { rating: 4, reviewer: 'Judith, September 11', title: 'NIT makes tedious....', description: 'NIT makes all the tedious tasks of managing an equities portfolio extremely easy. Dividends are automatically inserted by NIT own its own' },
+
+    { rating: 4, reviewer: 'Jenny, August 29', title: 'Cant recommend it enough!', description: 'I have been using NIT for almost two years. I have brokerage account and super accounts linked, so that it is automatically updated with all trades.' },
+
+]

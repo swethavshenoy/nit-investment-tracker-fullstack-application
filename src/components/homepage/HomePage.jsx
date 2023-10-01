@@ -1,205 +1,28 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, Button, IconButton, Container, Grid, Box, Stack, Card, CardHeader, CardContent, CardActions } from '@mui/material';
-import logo from '../../images/logo.jpg';
-import pic1 from '../../images/pic1.jpg';
-import graph from '../../images/hero-global.jpg';
-
+import { tiersData, navItems, reviewData } from '../../constants/config'
 import './HomePage.css'
+import Review from './components/Review';
+import Footer from './components/Footer';
+import NavBar from '../shared/NavBar';
+import Portfolio from './components/Portfolio';
+import Pricing from './components/Pricing';
+import JoinUs from './components/JoinUs';
 
 const HomePage = () => {
-
-    const tiers = [
-        {
-            title: 'Free',
-            price: '0',
-            description: [
-                '1 Portfolio',
-                '10 Holdings',
-                '1 Custom group',
-                'Limited reporting',
-                'Basic support',
-            ],
-            buttonText: 'Get Started',
-            buttonVariant: 'outlined',
-        },
-        {
-            title: 'Pro',
-            subheader: 'Most popular',
-            price: '700',
-            description: [
-                '1 Portfolio',
-                '30 Holdings',
-                '3 Custom groups',
-                'Limited reporting',
-                'Standard support',
-            ],
-            buttonText: 'Get started',
-            buttonVariant: 'contained',
-        },
-        {
-            title: 'Enterprise',
-            price: '1000',
-            description: [
-                '4 Portfolios',
-                'Unlimited Holdings',
-                '5 Custom groups',
-                'Advanced reporting',
-                'Standard support',
-            ],
-            buttonText: 'Get Started',
-            buttonVariant: 'outlined',
-        },
-    ];
     return (
-        <div>
-            <AppBar position="static">
-                <Toolbar>
-                    <IconButton edge="start" aria-label="menu">
-                        <img src={logo} alt='Image1' height={50} width={50} />
-                    </IconButton>
-                    <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
-                        <span className='heading'>NIT</span>
-                        <Button>Features</Button>
-                        <Button>Pricing</Button>
-                        <Button>Resources</Button>
-                        <Button>ESG</Button>
-                        <Button>Suitable plans</Button>
-                        <Button>About Us</Button>
-                    </Typography>
-                    <Button>LogIn</Button>
-                    <Button>SignUp</Button>
-                </Toolbar>
-            </AppBar>
-            {/* Hero Unit */}
-            <main className='hero'>
-                <Box
-                    sx={{
-                        pt: 8,
-                        pb: 6,
-                        background: 'radial-gradient(circle at 50% 50%, rgb(255, 214, 102), rgb(254, 173, 129), rgb(246, 167, 162), rgb(147, 156, 235)) 0% 0% / 400% 100%;'
-                    }}
-                >
-                    <Container >
-                        <Typography
-                            component="h1"
-                            variant="h3"
-                            align="center"
-                            color="#5a287d"
-                            gutterBottom
-                        >
-                            Be the smarter investor
-                        </Typography>
-                        <Typography variant="h5" align="center" color="#646068 " paragraph>
-                            Powerful portfolio tracking software that lets you check your investments in one place with award-winning performance, dividend tracking and tax reporting.
-                        </Typography>
-                        <Stack
-                            sx={{ pt: 1 }}
-                            direction="row"
-                            spacing={2}
-                            justifyContent="center"
-                        >
-                            <Button className='box' variant="contained" sx={{ pt: 1 }} color="warning">Signup for free</Button>
-                        </Stack>
-                        <img src={graph} alt='portfolio graph' width={700} height={536} />
-                    </Container>
-                </Box>
-            </main>
-            {/* Pricing */}
-            <Container disableGutters maxWidth="sm" component="main" sx={{ pt: 2, pb: 2 }}>
-                <Typography
-                    component="h1"
-                    variant="h3"
-                    align="center"
-                    color="text.primary"
-                    gutterBottom
-                >
-                    Our Plans & Pricing
-                </Typography>
-            </Container>
-            {/* End hero unit */}
-            <Container maxWidth="md" component="main">
-                <Grid container spacing={5} alignItems="flex-end">
-                    {tiers.map((tier) => (
-                        // Enterprise card is full width at sm breakpoint
-                        <Grid
-                            item
-                            key={tier.title}
-                            xs={12}
-                            sm={tier.title === 'Enterprise' ? 12 : 6}
-                            md={4}
-                        >
-                            <Card>
-                                <CardHeader
-                                    title={tier.title}
-                                    subheader={tier.subheader}
-                                    titleTypographyProps={{ align: 'center' }}
-                                    action={tier.title === 'Pro'}
-                                    subheaderTypographyProps={{
-                                        align: 'center',
-                                    }}
-                                    sx={{
-                                        backgroundColor: (theme) =>
-                                            theme.palette.mode === 'light'
-                                                ? theme.palette.grey[200]
-                                                : theme.palette.grey[700],
-                                    }}
-                                />
-                                <CardContent>
-                                    <Box
-                                        sx={{
-                                            display: 'flex',
-                                            justifyContent: 'center',
-                                            alignItems: 'baseline',
-                                            mb: 2,
-                                        }}
-                                    >
-                                        <Typography component="h2" variant="h3" color="text.primary">
-                                            ₹{tier.price}
-                                        </Typography>
-                                        <Typography variant="h6" color="text.secondary">
-                                            /Month
-                                        </Typography>
-                                    </Box>
-                                    <ul>
-                                        {tier.description.map((line) => (
-                                            <Typography
-                                                component="li"
-                                                variant="subtitle1"
-                                                align="center"
-                                                key={line}
-                                            >
-                                                {line}
-                                            </Typography>
-                                        ))}
-                                    </ul>
-                                </CardContent>
-                                <CardActions>
-                                    <Button color='warning'
-                                        fullWidth
-                                        variant={tier.buttonVariant}>
-                                        {tier.buttonText}
-                                    </Button>
-                                </CardActions>
-                            </Card>
-                        </Grid>
-                    ))}
-                </Grid>
-                <p>*Prices in Indian Rupees. Taxes may apply. All paid plans include a 7 day free trial.</p>
-            </Container>
-            {/* Favourite brokers and apps */}
-            <Container>
-                <Grid container>
-                    <Grid item xs color="#AF0D24" sx={{ mt: 15 }}>
-                        {<h1>No fuss, free sign up! No credit card needed!</h1>}
-                        {<p>The only way to see true performance is to see it in context. Sign up for free without any commitment.</p>}
-                        <Button className='box' variant="contained" sx={{ pt: 1 }} color="warning">Signup for free</Button>
-                    </Grid>
-                    <Grid item xs>
-                        <img src={pic1} alt='Pic1' width={660} height={400} />
-                    </Grid>
-                </Grid>
-            </Container>
-        </div>
+        <>
+            <NavBar navItems={navItems} />
+
+            <Portfolio />
+
+            <Pricing tiersData={tiersData} />
+
+            <Review reviewData={reviewData} />
+
+            <JoinUs />
+
+            <Footer />
+        </>
     )
 }
 

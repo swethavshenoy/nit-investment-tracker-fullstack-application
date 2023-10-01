@@ -1,9 +1,5 @@
-.css-hyum1k-MuiToolbar-root {
-    background-color: #5a287d;
-}
-
 .heading {
-    margin-right: 20px;
+    margin-left: 10px;
     color: #fff;
 }
 
@@ -14,6 +10,11 @@
 .hero {
     background-color: lightyellow;
     box-sizing: inherit;
+}
+
+.img-fluid {
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
 }
 
 .css-10r0h1c-MuiStack-root>:not(style):not(style) {
@@ -30,4 +31,15 @@
 
 .image {
     padding: 60px;
+}
+
+.css-1k2nhpl-MuiButtonBase-root-MuiButton-root,
+.css-1fu7jd5-MuiButtonBase-root-MuiButton-root,
+.css-mzzq1f-MuiButtonBase-root-MuiButton-root {
+    background-color: #5a287d !important;
+}
+
+.css-xsqe0f-MuiButtonBase-root-MuiButton-root {
+    border: 1px solid #5a287d !important;
+    color: #5a287d !important;
 }
