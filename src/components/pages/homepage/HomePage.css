@@ -1,0 +1,29 @@
+.heading {
+    margin-left: 10px;
+    color: #fff;
+}
+
+.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+    color: #fff !important;
+}
+
+.hero {
+    background-color: lightyellow;
+    box-sizing: inherit;
+}
+
+.css-10r0h1c-MuiStack-root>:not(style):not(style) {
+    margin: 16px;
+}
+
+.css-17rfbpd-MuiTypography-root {
+    margin-bottom: 0px;
+}
+
+.css-1vd824g-MuiGrid-root {
+    padding: 60px;
+}
+
+.image {
+    padding: 60px;
+}
