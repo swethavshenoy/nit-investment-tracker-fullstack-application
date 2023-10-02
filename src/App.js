@@ -1,13 +1,18 @@
-import { Route, Routes } from 'react-router';
-import './App.css';
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import SignUp from './components/SignUp';
+import TermsOfUse from './components/TermsOfUse';
+import PrivacyPolicy from './components/PrivacyPolicy';
 
 function App() {
   return (
-    <div>
+    <BrowserRouter>
       <Routes>
-        {/* <Route path="/" element={} /> */}
+        <Route path="/" element={<SignUp />} />
+        <Route path="/terms" element={<TermsOfUse />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
       </Routes>
-    </div>
+    </BrowserRouter>
   );
 }
 
