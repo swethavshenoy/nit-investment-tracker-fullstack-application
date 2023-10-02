@@ -16,6 +16,7 @@ export default function Footer() {
                         ? theme.palette.grey[200]
                         : theme.palette.grey[800],
                 p: 6,
+                mt: 2,
                 background: 'radial-gradient(circle at 50% 50%, rgb(255, 214, 102), rgb(254, 173, 129), rgb(246, 167, 162), rgb(147, 156, 235)) 0% 0% / 400% 100%;'
             }}
         >

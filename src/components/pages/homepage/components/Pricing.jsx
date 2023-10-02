@@ -5,7 +5,7 @@ const Pricing = (props) => {
     const { tiersData } = props;
     return (
         <>
-            <Container disableGutters maxWidth="sm" component="main" sx={{ pt: 2, pb: 2 }}>
+            <Container disableGutters maxWidth="sm" component="main" sx={{ pb: 2 }}>
                 <Typography
                     component="h1"
                     variant="h3"

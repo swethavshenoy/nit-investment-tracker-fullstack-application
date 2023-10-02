@@ -1,6 +1,6 @@
 import React from 'react'
 import { Typography, Container, Button, Grid } from '@mui/material';
-import pic1 from '../../../images/pic1.jpg';
+import pic1 from '../../../../images/pic1.jpg';
 
 const JoinUs = () => {
     return (

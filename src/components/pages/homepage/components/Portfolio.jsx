@@ -1,6 +1,6 @@
 import React from 'react'
 import { Typography, Container, Box, Stack, Button } from '@mui/material';
-import graph from '../../../images/graph.jpg';
+import graph from '../../../../images/graph.jpg';
 
 const Portfolio = () => {
     return (

@@ -10,7 +10,7 @@ const Review = (props) => {
                     Don't just take our word for it
                 </Typography>
                 <Typography align="center" color="#646068" paragraph>
-                    Over 300,000+ investors track their investments with Sharesight. Here’s what a few of them have to say:
+                    Over 300,000+ investors track their investments with NIT. Here’s what a few of them have to say:
                 </Typography>
 
                 <Box sx={{

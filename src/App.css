@@ -1,3 +1,29 @@
 body {
     font-family: "RNHouseSansRegular", sans-serif;
 }
+
+.img-fluid {
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+}
+
+.css-hip9hq-MuiPaper-root-MuiAppBar-root {
+    height: 65px;
+}
+
+.css-hip9hq-MuiPaper-root-MuiAppBar-root {
+    background-color: #5a287d !important;
+}
+
+.css-1k2nhpl-MuiButtonBase-root-MuiButton-root,
+.css-1fu7jd5-MuiButtonBase-root-MuiButton-root,
+.css-mzzq1f-MuiButtonBase-root-MuiButton-root,
+.css-sghohy-MuiButtonBase-root-MuiButton-root {
+    background-color: #5a287d !important;
+}
+
+.css-xsqe0f-MuiButtonBase-root-MuiButton-root,
+.css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
+    border: 1px solid #5a287d !important;
+    color: #5a287d !important;
+}
