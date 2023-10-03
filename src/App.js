@@ -6,6 +6,7 @@ import HomePage from './components/pages/homepage/HomePage';
 import FeaturePage from './components/pages/featurepage/FeaturePage';
 import ResourcePage from './components/pages/resourcepage/ResourcePage';
 import AboutPage from './components/pages/aboutpage/AboutPage';
+import Dashboard from './components/pages/Dashboard/Dashboard';
 
 function App() {
   return (
@@ -16,12 +17,12 @@ function App() {
           <Route path="/feature" element={<FeaturePage />} />
           <Route path="/resource" element={<ResourcePage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </Default>
-
     </>
 
-  );
+  )
 }
 
 export default App;
