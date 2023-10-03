@@ -1,12 +1,15 @@
-import { Route, Routes } from 'react-router';
+// import { Route, Routes } from 'react-router';
+import LoginPage from './components/LoginPage';
 import './App.css';
+
 
 function App() {
   return (
     <div>
-      <Routes>
+      <LoginPage/>
+      {/* <Routes> */}
         {/* <Route path="/" element={} /> */}
-      </Routes>
+      {/* </Routes> */}
     </div>
   );
 }
