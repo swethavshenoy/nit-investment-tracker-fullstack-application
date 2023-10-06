@@ -10,7 +10,7 @@ import {
   InputAdornment,
 } from "@mui/material";
 import { Email, VpnKey } from "@mui/icons-material";
-import NITLogo from "../components/images/logo.png";
+import NITLogo from "../LoginComponent/images/logo.png";
 
 const styles = {
   root: {
@@ -162,18 +162,21 @@ function LoginPage() {
             Log in
           </Button>
         </form>
-
         <div>
           Don't have a NIT account?{" "}
           <Link to="/register" style={{ color: "#4caf50" }}>
             <b>Sign up for free </b>
           </Link>
         </div>
+        <div>
+  <Link to="/forgot-password" style={{ color: "#45a049" }}>
+    <b>Forgot Password?</b>
+  </Link>
+</div>
       </Container>
     </div>
   );
 }
-
 export default LoginPage;
 
 
