@@ -1,3 +1,4 @@
+import LoginPage from '../src/components/LoginComponent/LoginPage';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 
@@ -7,9 +8,11 @@ import FeaturePage from './components/pages/featurepage/FeaturePage';
 import ResourcePage from './components/pages/resourcepage/ResourcePage';
 import AboutPage from './components/pages/aboutpage/AboutPage';
 
+
 function App() {
   return (
     <>
+      <LoginPage />
       <Default>
         <Routes>
           <Route path="/" element={<HomePage />} />
