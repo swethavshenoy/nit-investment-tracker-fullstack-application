@@ -1,4 +1,3 @@
-import LoginPage from '../src/components/LoginComponent/LoginPage';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 
@@ -7,24 +6,26 @@ import HomePage from './components/pages/homepage/HomePage';
 import FeaturePage from './components/pages/featurepage/FeaturePage';
 import ResourcePage from './components/pages/resourcepage/ResourcePage';
 import AboutPage from './components/pages/aboutpage/AboutPage';
+import Dashboard from './components/pages/Dashboard/Dashboard';
+import EsgPage from './components/pages/esgpage/EsgPage';
 
 
 function App() {
   return (
     <>
-      <LoginPage />
       <Default>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/feature" element={<FeaturePage />} />
           <Route path="/resource" element={<ResourcePage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/esg" element={<EsgPage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </Default>
-
     </>
 
-  );
+  )
 }
 
 export default App;

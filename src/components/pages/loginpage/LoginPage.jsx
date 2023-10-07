@@ -8,9 +8,11 @@ import {
   Container,
   CssBaseline,
   InputAdornment,
+  IconButton,
 } from "@mui/material";
 import { Email, VpnKey } from "@mui/icons-material";
-import NITLogo from "../LoginComponent/images/logo.png";
+import NITLogo from "../../../images/logo.jpg";
+import CloseIcon from '@mui/icons-material/Close';
 
 const styles = {
   root: {
@@ -19,7 +21,6 @@ const styles = {
     alignItems: "center",
     justifyContent: "center",
     minHeight: "100vh",
-    backgroundColor: "#f5f5f5",
   },
   container: {
     backgroundColor: "white",
@@ -29,6 +30,7 @@ const styles = {
     width: "100%",
     maxWidth: "400px",
     textAlign: "center",
+    position: "relative"
   },
   logo: {
     width: "80px",
@@ -64,7 +66,8 @@ const styles = {
   },
 };
 
-function LoginPage() {
+function LoginPage(props) {
+  const { handleClose } = props;
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -100,7 +103,16 @@ function LoginPage() {
 
   return (
     <div style={styles.root}>
+
       <Container component="main" style={styles.container}>
+        <IconButton sx={{ position: 'absolute', top: 10, right: 10 }}
+          edge="start"
+          color="inherit"
+          onClick={handleClose}
+          aria-label="close"
+        >
+          <CloseIcon />
+        </IconButton>
         <CssBaseline />
         <div style={styles.headerText}>
           <img src={NITLogo} alt="NIT Logo" style={styles.logo} />
@@ -169,10 +181,10 @@ function LoginPage() {
           </Link>
         </div>
         <div>
-  <Link to="/forgot-password" style={{ color: "#45a049" }}>
-    <b>Forgot Password?</b>
-  </Link>
-</div>
+          <Link to="/forgot-password" style={{ color: "#45a049" }}>
+            <b>Forgot Password?</b>
+          </Link>
+        </div>
       </Container>
     </div>
   );

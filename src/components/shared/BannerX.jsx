@@ -16,7 +16,7 @@ const BannerX = (props) => {
                     <Typography color="#646068" paragraph sx={{ pt: 5, pb: 5 }}>
                         {data.description}
                     </Typography>
-                    <Button className='box' variant="contained" sx={{ pt: 1 }}>{data.btnText}</Button>
+                    {data.btnText && <Button className='box' variant="contained" sx={{ pt: 1 }}>{data.btnText}</Button>}
                 </Grid>
             </Grid>
         </Container>)

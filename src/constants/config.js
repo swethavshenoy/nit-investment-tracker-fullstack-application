@@ -10,6 +10,9 @@ import started from '../images/resource/101.png'
 import forum from '../images/resource/forum.png'
 import webinar from '../images/resource/webinar.png'
 import event from '../images/resource/event.png'
+import env from '../images/esg/env.png'
+import social from '../images/esg/social.png'
+import supply from '../images/esg/supply.png'
 
 export const tiersData = [
     {
@@ -57,6 +60,7 @@ export const tiersData = [
 export const navItems = [
     { name: 'Features', path: 'feature' },
     { name: 'Resource', path: 'resource' },
+    { name: 'ESG', path: 'esg' },
     { name: 'About Us', path: 'about' }
 ];
 
@@ -177,5 +181,28 @@ export const aboutCard = [
         title: 'Today',
         description: 'Now a leading fintech company, NIT helps hundreds of thousands of investors.',
         // img: event
+    },
+];
+
+export const esgCardBottom = [
+    {
+        title: 'Environmental Issues',
+        description: 'Carbon footprint, Energy efficiency, Renewable energy usage, Water usage, Pollution, Waste management, Biodiversity impact',
+        img: env
+    },
+    {
+        title: 'Social Issues',
+        description: 'Labor practices, Pro-diversity efforts, Human rights, Community relations, Health and safety',
+        img: social
+    },
+    {
+        title: 'Governance Issues',
+        description: `Board diversity and structure,
+        Executive compensation,
+        Shareholder rights,
+        Business ethics,
+        Risk management,
+        Supply chain management`,
+        img: supply
     },
 ];
