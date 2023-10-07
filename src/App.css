@@ -27,3 +27,7 @@ body {
     border: 1px solid #5a287d !important;
     color: #5a287d !important;
 }
+
+.css-i9fmh8-MuiBackdrop-root-MuiModal-backdrop {
+    background-color: transparent !important;
+}

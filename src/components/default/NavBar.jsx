@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import { AppBar, Toolbar, Typography, Button, IconButton, Menu, MenuItem, Fade, Box } from '@mui/material';
 import logo from '../../images/logo.jpg';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -8,7 +7,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 const NavBar = (props) => {
     const navigate = useNavigate();
 
-    const { navItems } = props;
+    const { navItems, handleSignIn } = props;
 
     const [anchorEl, setAnchorEl] = useState(null);
 
@@ -27,8 +26,12 @@ const NavBar = (props) => {
         handleClose();
     }
 
+
     return (
+
+
         <AppBar position="static">
+
             <Toolbar sx={{ justifyContent: 'space-between', display: "flex" }}>
                 <IconButton edge="start" aria-label="menu" onClick={() => handleNavigate('')}>
                     <img src={logo} alt='Image1' height={50} width={50} />
@@ -38,8 +41,8 @@ const NavBar = (props) => {
                     {navItems.map((item, index) => <Button key={index} onClick={() => handleNavigate(item)}>{item.name}</Button>)}
                 </Typography>
                 <Box sx={{ justifyContent: 'space-between', display: "flex" }}>
-                    <Button>LogIn</Button>
-                    <Button>SignUp</Button>
+                    <Button onClick={handleSignIn}>SignIn</Button>
+                    {/* <Button>SignUp</Button> */}
                     <Typography variant="h5" component="div" sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
                         <div>
                             <Button
