@@ -4,6 +4,8 @@ import { AppBar, Toolbar, Typography, Button, IconButton, Box, Avatar } from '@m
 import logo from '../../images/logo.jpg';
 import MenuIcon from '@mui/icons-material/Menu';
 import MenuDrop from '../shared/MenuDrop';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { Badge } from '@mui/base';
 
 const NavBar = (props) => {
     const navigate = useNavigate();
@@ -64,6 +66,11 @@ const NavBar = (props) => {
                             <MenuDrop open={openProfile} handleClick={handleProfileClick} anchorEl={profileEl} handleClose={handleClose} navItems={profileItem} handleNavigate={handleProfileNavigate}>
                                 <Avatar sx={{ bgcolor: '#fff', color: '#5a287d', fontWeight: 'bold' }} >SC</Avatar>
                             </MenuDrop>
+                            <IconButton color="inherit">
+                                <Badge badgeContent={profileItem.count} color="secondary">
+                                    <ShoppingCartIcon />
+                                </Badge>
+                            </IconButton>
                         </Typography>
                     }
                     <Typography variant="h5" component="div" sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>

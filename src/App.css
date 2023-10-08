@@ -50,3 +50,19 @@ body {
 .prev {
     left: -10px;
 }
+
+.css-8bjq0v-MuiButtonBase-root-MuiButton-root {
+    background-color: #5a287d !important;
+}
+
+.css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-active {
+    color: #5a287d !important;
+}
+
+.css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-completed {
+    color: #5a287d !important;
+}
+
+.css-1dym4ij-MuiButtonBase-root-MuiButton-root {
+    color: #646068 !important;
+}

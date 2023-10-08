@@ -118,7 +118,7 @@ function LoginPage(props) {
           <img src={NITLogo} alt="NIT Logo" style={styles.logo} />
         </div>
         <Typography variant="h5">
-          <b>Log in to NIT</b>
+          <b>Login to NIT</b>
         </Typography>
         {loginStatus && (
           <Typography variant="body1" style={styles.errorText}>

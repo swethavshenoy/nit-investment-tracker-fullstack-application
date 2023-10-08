@@ -8,6 +8,7 @@ import ResourcePage from './components/pages/resourcepage/ResourcePage';
 import AboutPage from './components/pages/aboutpage/AboutPage';
 import DashboardPage from './components/pages/dashboardpage/DashboardPage';
 import EsgPage from './components/pages/esgpage/EsgPage';
+import Checkout from './components/pages/checkoutpage/components/Checkout';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/esg" element={<EsgPage />} />
           <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </Default>
     </>

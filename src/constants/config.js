@@ -97,22 +97,16 @@ export const featureCardTop = [
     {
         title: 'Know your real performance',
         description: 'Compare performance across all of your brokers and assets with detailed reporting, charts, price updates.',
-        buttonText: 'See your performance',
-        buttonVariant: 'outlined',
         img: performance,
     },
     {
         title: 'Automate your dividend tracking',
         description: 'Watch as corporate actions such as dividends, DRPs and share splits are automatically updated in your portfolio',
-        buttonText: 'Track dividends',
-        buttonVariant: 'contained',
         img: automation
     },
     {
         title: 'Instantly share your tax reports',
         description: 'Share your portfolio and tax reports with your accountant and save time, money and hassle during the tax season.',
-        buttonText: 'Share tax reports',
-        buttonVariant: 'outlined',
         img: tax
     },
 ];
@@ -121,22 +115,16 @@ export const featureCardBottom = [
     {
         title: 'Brokers',
         description: 'Automatically import trades from 200+ global brokers.',
-        buttonText: 'Learn more',
-        buttonVariant: 'outlined',
         img: broker,
     },
     {
         title: 'Markets',
         description: 'Track stocks, ETFs and funds in 40+ markets worldwide.',
-        buttonText: 'Learn more',
-        buttonVariant: 'outlined',
         img: market
     },
     {
         title: 'Software',
         description: 'Connect to any of our leading software partners.',
-        buttonText: 'Learn more',
-        buttonVariant: 'outlined',
         img: software
     },
 ];
@@ -192,7 +180,7 @@ export const aboutCard = [
     },
     {
         title: '2015',
-        description: 'NIT launches internationally with a $2m capital raise from our customer base.',
+        description: 'NIT launches internationally with a ₹2m capital raise from our customer base.',
         // img: forum,
     },
     {
@@ -274,29 +262,28 @@ export const transactions = [
 ];
 
 export const stockHoldingData = [
-    { logo: apple, name: 'Apple', shares: '$310.4', return: '-110%', state: 'grow' },
-    { logo: meta, name: 'Meta', shares: '$310.4', return: '-110%', state: 'down' },
-    { logo: microsoft, name: 'Microsoft', shares: '$310.4', return: '-110%', state: 'grow' },
-    { logo: google, name: 'Google', shares: '$310.4', return: '-110%', state: 'down' },
+    { logo: apple, name: 'Apple', shares: '₹310.4', return: '-110%', state: 'grow' },
+    { logo: meta, name: 'Meta', shares: '₹310.4', return: '-110%', state: 'down' },
+    { logo: microsoft, name: 'Microsoft', shares: '₹310.4', return: '-110%', state: 'grow' },
+    { logo: google, name: 'Google', shares: '₹310.4', return: '-110%', state: 'down' },
 
-    { logo: microsoft, name: 'Microsoft', shares: '$310.4', return: '-110%', state: 'grow' },
-    { logo: google, name: 'Google', shares: '$310.4', return: '-110%', state: 'down' },
-    { logo: meta, name: 'Meta', shares: '$310.4', return: '-110%', state: 'down' },
-    { logo: apple, name: 'Apple', shares: '$310.4', return: '-110%', state: 'grow' },
+    { logo: microsoft, name: 'Microsoft', shares: '₹310.4', return: '-110%', state: 'grow' },
+    { logo: google, name: 'Google', shares: '₹310.4', return: '-110%', state: 'down' },
+    { logo: meta, name: 'Meta', shares: '₹310.4', return: '-110%', state: 'down' },
+    { logo: apple, name: 'Apple', shares: '₹310.4', return: '-110%', state: 'grow' },
 ];
 
 export const stockWishlistData = [
-    { logo: spotify, name: 'Spotify', id: 'SPOT', shares: '$310.4', return: '-110%', count: 0 },
-    { logo: shopify, name: 'Shopify', id: 'SHOP', shares: '$310.4', return: '-110%', count: 0 },
-    { logo: dropbox, name: 'Dropbox Inc', id: 'DBX', shares: '$310.4', return: '-110%', count: 0 },
-    { logo: paypal, name: 'Paypal', id: 'PYPL', shares: '$310.4', return: '-110%', count: 0 },
-    { logo: sony, name: 'Sony', id: 'SONY', shares: '$310.4', return: '-110%', count: 0 },
-    { logo: amazon, name: 'Amazon', id: 'AMZ', shares: '$310.4', return: '-110%', count: 0 },
+    { logo: spotify, name: 'Spotify', id: 'SPOT', shares: '₹310.4', return: '-110%', count: 0 },
+    { logo: shopify, name: 'Shopify', id: 'SHOP', shares: '₹310.4', return: '-110%', count: 0 },
+    { logo: dropbox, name: 'Dropbox Inc', id: 'DBX', shares: '₹310.4', return: '-110%', count: 0 },
+    { logo: paypal, name: 'Paypal', id: 'PYPL', shares: '₹310.4', return: '-110%', count: 0 },
+    { logo: sony, name: 'Sony', id: 'SONY', shares: '₹310.4', return: '-110%', count: 0 },
+    { logo: amazon, name: 'Amazon', id: 'AMZ', shares: '₹310.4', return: '-110%', count: 0 },
 
-    { logo: spotify, name: 'Spotify', id: 'SPOT', shares: '$310.4', return: '-110%', count: 0 },
-    { logo: shopify, name: 'Shopify', id: 'SHOP', shares: '$310.4', return: '-110%', count: 0 },
-    { logo: dropbox, name: 'Dropbox Inc', id: 'DBX', shares: '$310.4', return: '-110%', count: 0 },
-    { logo: paypal, name: 'Paypal', id: 'PYPL', shares: '$310.4', return: '-110%', count: 0 },
-    { logo: sony, name: 'Sony', id: 'SONY', shares: '$310.4', return: '-110%', count: 0 },
-    { logo: amazon, name: 'Amazon', id: 'AMZ', shares: '$310.4', return: '-110%', count: 0 },
+    { logo: apple, name: 'Apple', id: 'APPLE', shares: '₹310.4', return: '-110%', count: 0 },
+    { logo: microsoft, name: 'Microsoft', id: 'MICRO', shares: '₹310.4', return: '-110%', count: 0 },
+    { logo: google, name: 'Google', id: 'GOOGLE', shares: '₹310.4', return: '-110%', count: 0 },
+    { logo: meta, name: 'Meta', id: 'META', shares: '₹310.4', return: '-110%', count: 0 },
+    { logo: amazon, name: 'Amazon', id: 'AMZ', shares: '₹310.4', return: '-110%', count: 0 },
 ]

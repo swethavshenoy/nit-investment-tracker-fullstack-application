@@ -9,7 +9,7 @@ import BannerX from '../../shared/BannerX';
 
 const FeaturePage = () => {
 
-    const bannerContent = { title: 'The best portfolio and dividend tracker', description: 'Automatically track price, performance and dividends from 240,000+ global stocks, crypto, ETFs and funds. Add cash accounts and property to get the full picture of your portfolio - all in one place.', btnText: 'Signup for free', image: portfolio };
+    const bannerContent = { title: 'The best portfolio and investment tracker', description: 'Automatically track price, performance and investments from 240,000+ global stocks. Add cash accounts and property to get the full picture of your portfolio - all in one place.', btnText: 'Signup for free', image: portfolio };
 
     const bannerContentX = { title: 'See your diversification', description: 'Get deeper insights into your portfolio by exploring your asset allocation and diversification with the Diversity Report.', btnText: 'View pricing plans', image: diversification };
 
