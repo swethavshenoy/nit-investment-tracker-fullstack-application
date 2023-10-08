@@ -12,7 +12,7 @@ const Portfolio = () => {
                     background: 'radial-gradient(circle at 50% 50%, rgb(255, 214, 102), rgb(254, 173, 129), rgb(246, 167, 162), rgb(147, 156, 235)) 0% 0% / 400% 100%;'
                 }}
             >
-                <Container align="center">
+                <Container align="center" maxWidth="md">
                     <Typography
                         component="h1"
                         variant="h3"

@@ -10,7 +10,7 @@ import broker from '../../../images/brokers.png';
 
 
 const HomePage = () => {
-    const bannerContent = { title: 'We work with all your favourite brokers and apps', description: 'NIT integrates with hundreds of brokers and finance apps, including Robinhood, Charles Schwab and Interactive Brokers.', btnText: 'View our partners', image: broker };
+    const bannerContent = { title: 'We work with all your favourite brokers and apps', description: 'NIT integrates with hundreds of brokers and finance apps, including Robinhood, Charles Schwab and Interactive Brokers.', image: broker };
     return (
         <>
             <Portfolio />

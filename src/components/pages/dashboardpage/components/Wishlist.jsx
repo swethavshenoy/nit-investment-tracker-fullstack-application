@@ -10,7 +10,7 @@ const Wishlist = (props) => {
         <Paper sx={{
             backgroundColor: '#fff', borderRadius: 6, boxShadow: '0px 5px 10px 0px rgba(0, 0, 0, 0.5)', padding: 3, overflow: 'auto', maxHeight: 500
         }}>
-            <Typography color="#33333" paragraph>Watchlist</Typography>
+            <Typography color="#33333" paragraph>Stocks</Typography>
             {
                 data.map(data => (
                     <Box sx={{ mb: 3 }}>

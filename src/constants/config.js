@@ -23,7 +23,10 @@ import dropbox from '../images/dashboard/dropbox.png'
 import paypal from '../images/dashboard/paypal.png'
 import sony from '../images/dashboard/sony.png'
 import amazon from '../images/dashboard/amazon.png'
-
+import bajaj from '../images/dashboard/bajaj.jpg'
+import tata from '../images/dashboard/Tata.png'
+import airtel from '../images/dashboard/airtel.jpg'
+import indigo from '../images/dashboard/indigo.png'
 
 export const tiersData = [
     {
@@ -262,28 +265,31 @@ export const transactions = [
 ];
 
 export const stockHoldingData = [
-    { logo: apple, name: 'Apple', shares: '₹310.4', return: '-110%', state: 'grow' },
+    { logo: bajaj, name: 'Bajaj', shares: '₹310.4', return: '-110%', state: 'grow' },
     { logo: meta, name: 'Meta', shares: '₹310.4', return: '-110%', state: 'down' },
     { logo: microsoft, name: 'Microsoft', shares: '₹310.4', return: '-110%', state: 'grow' },
-    { logo: google, name: 'Google', shares: '₹310.4', return: '-110%', state: 'down' },
+    { logo: tata, name: 'Tata', shares: '₹310.4', return: '-110%', state: 'grow' },
 
-    { logo: microsoft, name: 'Microsoft', shares: '₹310.4', return: '-110%', state: 'grow' },
+    { logo: sony, name: 'Sony', shares: '₹310.4', return: '-110%', state: 'grow' },
     { logo: google, name: 'Google', shares: '₹310.4', return: '-110%', state: 'down' },
-    { logo: meta, name: 'Meta', shares: '₹310.4', return: '-110%', state: 'down' },
+    { logo: amazon, name: 'Amazon', shares: '₹310.4', return: '-110%', state: 'down' },
     { logo: apple, name: 'Apple', shares: '₹310.4', return: '-110%', state: 'grow' },
 ];
 
 export const stockWishlistData = [
+    { logo: apple, name: 'Apple', id: 'APPLE', shares: '₹310.4', return: '-110%', count: 0 },
+    { logo: indigo, name: 'Indigo', id: 'INGO', shares: '₹310.4', return: '-110%', count: 0 },
+    { logo: sony, name: 'Sony', id: 'SONY', shares: '₹310.4', return: '-110%', count: 0 },
+    { logo: amazon, name: 'Amazon', id: 'AMZ', shares: '₹310.4', return: '-110%', count: 0 },
+    { logo: bajaj, name: 'Bajaj', id: 'BAJAJ', shares: '₹310.4', return: '-110%', count: 0 },
+    { logo: tata, name: 'Tata', id: 'TATA', shares: '₹310.4', return: '-110%', count: 0 },
+    { logo: airtel, name: 'Airtel', id: 'ARTL', shares: '₹310.4', return: '-110%', count: 0 },
+
     { logo: spotify, name: 'Spotify', id: 'SPOT', shares: '₹310.4', return: '-110%', count: 0 },
     { logo: shopify, name: 'Shopify', id: 'SHOP', shares: '₹310.4', return: '-110%', count: 0 },
     { logo: dropbox, name: 'Dropbox Inc', id: 'DBX', shares: '₹310.4', return: '-110%', count: 0 },
-    { logo: paypal, name: 'Paypal', id: 'PYPL', shares: '₹310.4', return: '-110%', count: 0 },
-    { logo: sony, name: 'Sony', id: 'SONY', shares: '₹310.4', return: '-110%', count: 0 },
-    { logo: amazon, name: 'Amazon', id: 'AMZ', shares: '₹310.4', return: '-110%', count: 0 },
-
-    { logo: apple, name: 'Apple', id: 'APPLE', shares: '₹310.4', return: '-110%', count: 0 },
     { logo: microsoft, name: 'Microsoft', id: 'MICRO', shares: '₹310.4', return: '-110%', count: 0 },
     { logo: google, name: 'Google', id: 'GOOGLE', shares: '₹310.4', return: '-110%', count: 0 },
     { logo: meta, name: 'Meta', id: 'META', shares: '₹310.4', return: '-110%', count: 0 },
-    { logo: amazon, name: 'Amazon', id: 'AMZ', shares: '₹310.4', return: '-110%', count: 0 },
+    { logo: paypal, name: 'Paypal', id: 'PYPL', shares: '₹310.4', return: '-110%', count: 0 },
 ]
