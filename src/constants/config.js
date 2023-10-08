@@ -13,6 +13,17 @@ import event from '../images/resource/event.png'
 import env from '../images/esg/env.png'
 import social from '../images/esg/social.png'
 import supply from '../images/esg/supply.png'
+import apple from '../images/dashboard/apple.png'
+import meta from '../images/dashboard/meta.png'
+import microsoft from '../images/dashboard/microsoft.png'
+import google from '../images/dashboard/google.png'
+import spotify from '../images/dashboard/spotify.png'
+import shopify from '../images/dashboard/shopify.png'
+import dropbox from '../images/dashboard/dropbox.png'
+import paypal from '../images/dashboard/paypal.png'
+import sony from '../images/dashboard/sony.png'
+import amazon from '../images/dashboard/amazon.png'
+
 
 export const tiersData = [
     {
@@ -62,6 +73,13 @@ export const navItems = [
     { name: 'Resource', path: 'resource' },
     { name: 'ESG', path: 'esg' },
     { name: 'About Us', path: 'about' }
+];
+
+export const profileItems = [
+    { name: 'My Profile', path: 'investment' },
+    { name: 'Transaction History', path: 'history' },
+    { name: 'Pricing', path: 'pricing' },
+    { name: 'Logout', path: 'logout' },
 ];
 
 export const reviewData = [
@@ -206,3 +224,79 @@ export const esgCardBottom = [
         img: supply
     },
 ];
+
+export const investments = [
+    {
+        id: 1,
+        name: 'Apple Inc. (AAPL)',
+        quantity: 50,
+        pricePerShare: 150,
+    },
+    {
+        id: 2,
+        name: 'Microsoft Corporation (MSFT)',
+        quantity: 30,
+        pricePerShare: 300,
+    },
+    {
+        id: 3,
+        name: 'Amazon.com Inc. (AMZN)',
+        quantity: 10,
+        pricePerShare: 3500,
+    },
+];
+
+export const transactions = [
+    {
+        id: 1,
+        type: 'Buy',
+        investment: 'Apple Inc. (AAPL)',
+        quantity: 10,
+        pricePerShare: 150,
+        totalCost: 1500,
+    },
+    {
+        id: 2,
+        type: 'Sell',
+        investment: 'Microsoft Corporation (MSFT)',
+        quantity: 15,
+        pricePerShare: 310,
+        totalCost: 4650,
+    },
+    {
+        id: 3,
+        type: 'Buy',
+        investment: 'Amazon.com Inc. (AMZN)',
+        quantity: 5,
+        pricePerShare: 3500,
+        totalCost: 17500,
+    },
+];
+
+export const stockHoldingData = [
+    { logo: apple, name: 'Apple', shares: '$310.4', return: '-110%', state: 'grow' },
+    { logo: meta, name: 'Meta', shares: '$310.4', return: '-110%', state: 'down' },
+    { logo: microsoft, name: 'Microsoft', shares: '$310.4', return: '-110%', state: 'grow' },
+    { logo: google, name: 'Google', shares: '$310.4', return: '-110%', state: 'down' },
+
+    { logo: microsoft, name: 'Microsoft', shares: '$310.4', return: '-110%', state: 'grow' },
+    { logo: google, name: 'Google', shares: '$310.4', return: '-110%', state: 'down' },
+    { logo: meta, name: 'Meta', shares: '$310.4', return: '-110%', state: 'down' },
+    { logo: apple, name: 'Apple', shares: '$310.4', return: '-110%', state: 'grow' },
+];
+
+export const stockWishlistData = [
+    { logo: spotify, name: 'Spotify', id: 'SPOT', shares: '$310.4', return: '-110%', count: 0 },
+    { logo: shopify, name: 'Shopify', id: 'SHOP', shares: '$310.4', return: '-110%', count: 0 },
+    { logo: dropbox, name: 'Dropbox Inc', id: 'DBX', shares: '$310.4', return: '-110%', count: 0 },
+    { logo: paypal, name: 'Paypal', id: 'PYPL', shares: '$310.4', return: '-110%', count: 0 },
+    { logo: sony, name: 'Sony', id: 'SONY', shares: '$310.4', return: '-110%', count: 0 },
+    { logo: amazon, name: 'Amazon', id: 'AMZ', shares: '$310.4', return: '-110%', count: 0 },
+
+    { logo: spotify, name: 'Spotify', id: 'SPOT', shares: '$310.4', return: '-110%', count: 0 },
+    { logo: shopify, name: 'Shopify', id: 'SHOP', shares: '$310.4', return: '-110%', count: 0 },
+    { logo: dropbox, name: 'Dropbox Inc', id: 'DBX', shares: '$310.4', return: '-110%', count: 0 },
+    { logo: paypal, name: 'Paypal', id: 'PYPL', shares: '$310.4', return: '-110%', count: 0 },
+    { logo: sony, name: 'Sony', id: 'SONY', shares: '$310.4', return: '-110%', count: 0 },
+    { logo: amazon, name: 'Amazon', id: 'AMZ', shares: '$310.4', return: '-110%', count: 0 },
+]

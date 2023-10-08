@@ -6,8 +6,8 @@ const Cards = (props) => {
     return (
         <Container>
             <Grid container spacing={5}>
-                {data && data.map(obj => (
-                    <Grid item md={4} xs color="#5a287d" sx={{ mt: 1 }} style={{ display: 'flex' }}>
+                {data && data.map((obj, index) => (
+                    <Grid item md={4} xs color="#5a287d" sx={{ mt: 1 }} style={{ display: 'flex' }} key={index}>
 
 
                         <Card sx={{

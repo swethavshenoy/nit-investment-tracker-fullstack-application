@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import NavBar from './NavBar';
 import Footer from './Footer';
 import LoginModal from './LoginModal';
-import { navItems } from '../../constants/config';
+import { navItems, profileItems } from '../../constants/config';
 
 const Default = ({ children }) => {
 
@@ -15,18 +15,11 @@ const Default = ({ children }) => {
 
     return (
         <>
-            <NavBar navItems={navItems} handleSignIn={handleSignIn} />
-
-
-
+            <NavBar navItems={navItems} profileItem={profileItems} handleSignIn={handleSignIn} />
+            <LoginModal showLogin={showLogin} handleClose={handleSignIn} />
             <main>
-
-                <LoginModal showLogin={showLogin} handleClose={handleSignIn} />
                 {children}
-
             </main>
-
-
             <Footer />
         </>
     )

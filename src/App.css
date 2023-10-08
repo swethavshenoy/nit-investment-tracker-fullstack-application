@@ -31,3 +31,22 @@ body {
 .css-i9fmh8-MuiBackdrop-root-MuiModal-backdrop {
     background-color: transparent !important;
 }
+
+.css-1la267r-MuiAreaElement-root {
+    fill: #5a287d !important;
+}
+
+.next,
+.prev {
+    position: absolute;
+    top: 45%;
+    cursor: pointer;
+}
+
+.next {
+    right: -10px;
+}
+
+.prev {
+    left: -10px;
+}
