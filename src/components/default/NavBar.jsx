@@ -5,13 +5,24 @@ import logo from '../../images/logo.jpg';
 import MenuIcon from '@mui/icons-material/Menu';
 import MenuDrop from '../shared/MenuDrop';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { Badge } from '@mui/base';
+import Badge from '@mui/material/Badge';
+
+function notificationsLabel(count) {
+    if (count === 0) {
+        return 'no notifications';
+    }
+    if (count > 99) {
+        return 'more than 99 notifications';
+    }
+    return `${count} notifications`;
+}
 
 const NavBar = (props) => {
+
     const navigate = useNavigate();
     const location = useLocation();
 
-    const { navItems, handleSignIn, profileItem } = props;
+    const { navItems, handleSignIn, profileItem, cartCount } = props;
 
     const [anchorEl, setAnchorEl] = useState(null);
     const [profileEl, setProfileEl] = useState(null);
@@ -44,10 +55,9 @@ const NavBar = (props) => {
         handleClose();
     }
 
-
     return (
-
         <AppBar position="static">
+            {console.log(cartCount)}
             <Toolbar sx={{ justifyContent: 'space-between', display: "flex" }}>
                 <IconButton edge="start" aria-label="menu" onClick={() => handleNavigate('')}>
                     <img src={logo} alt='Image1' height={50} width={50} />
@@ -66,9 +76,9 @@ const NavBar = (props) => {
                             <MenuDrop open={openProfile} handleClick={handleProfileClick} anchorEl={profileEl} handleClose={handleClose} navItems={profileItem} handleNavigate={handleProfileNavigate}>
                                 <Avatar sx={{ bgcolor: '#fff', color: '#5a287d', fontWeight: 'bold' }} >SC</Avatar>
                             </MenuDrop>
-                            <IconButton color="inherit">
-                                <Badge badgeContent={profileItem.count} color="secondary">
-                                    <ShoppingCartIcon />
+                            <IconButton aria-label={notificationsLabel(100)}>
+                                <Badge badgeContent={cartCount || 0} color="secondary">
+                                    <ShoppingCartIcon style={{ color: "#fff" }} />
                                 </Badge>
                             </IconButton>
                         </Typography>

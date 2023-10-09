@@ -9,8 +9,8 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import Payment from '../components/Payment';
-import Review from './Review';
+import Payment from './components/Payment';
+import Review from './components/Review';
 
 const steps = ['Payment details', 'Review your purchase'];
 

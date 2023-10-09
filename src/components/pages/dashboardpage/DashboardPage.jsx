@@ -5,8 +5,9 @@ import StockHolding from './components/StockHolding';
 import Performance from './components/Performance';
 import Wishlist from './components/Wishlist';
 
-const DashboardPage = () => {
 
+
+const DashboardPage = (props) => {
     const [stockData, setStockData] = useState(stockHoldingData.slice(0, 4));
     const [activeToggle, setActiveToggle] = useState('prev');
     const [wishListData, setWishListData] = useState(stockWishlistData);
@@ -18,8 +19,11 @@ const DashboardPage = () => {
     }
 
     const handleAddRemove = (e, id) => {
-        const data = wishListData.map(el => el.id === id ? (e === 'add' ? { ...el, ['count']: el.count + 1 } : { ...el, ['count']: el.count - 1 }) : el);
+        const data = wishListData.map(el => el.id === id ? (e === 'add' ? { ...el, count: el.count + 1 } : { ...el, count: el.count - 1 }) : el);
+        console.log(data)
         setWishListData(data);
+        const sum = data.reduce((accumulator, object) => accumulator + object.count, 0);
+        props.func(sum);
     }
 
     return (
