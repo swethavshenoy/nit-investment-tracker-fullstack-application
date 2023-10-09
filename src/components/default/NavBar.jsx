@@ -57,7 +57,6 @@ const NavBar = (props) => {
 
     return (
         <AppBar position="static">
-            {console.log(cartCount)}
             <Toolbar sx={{ justifyContent: 'space-between', display: "flex" }}>
                 <IconButton edge="start" aria-label="menu" onClick={() => handleNavigate('')}>
                     <img src={logo} alt='Image1' height={50} width={50} />

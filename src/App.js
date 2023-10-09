@@ -9,8 +9,10 @@ import AboutPage from './components/pages/aboutpage/AboutPage';
 import DashboardPage from './components/pages/dashboardpage/DashboardPage';
 import EsgPage from './components/pages/esgpage/EsgPage';
 import Checkout from './components/pages/checkoutpage/Checkout';
+import Pricing from './components/shared/Pricing';
 
 import './App.css';
+import { tiersData } from './constants/config'
 
 
 function App() {
@@ -31,6 +33,7 @@ function App() {
           <Route path="/esg" element={<EsgPage />} />
           <Route path="/dashboard" element={<DashboardPage func={handleCartCount} />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/pricing" element={<Pricing tiersData={tiersData} />} />
         </Routes>
       </Default>
     </>

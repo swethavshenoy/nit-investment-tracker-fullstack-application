@@ -2,7 +2,7 @@ import React from 'react';
 import { tiersData, reviewData } from '../../../constants/config'
 import './HomePage.css'
 import Review from '../../shared/Review';
-import Pricing from './components/Pricing';
+import Pricing from '../../shared/Pricing';
 import JoinUs from './components/JoinUs';
 import Portfolio from './components/Portfolio';
 import Banner from '../../shared/Banner';

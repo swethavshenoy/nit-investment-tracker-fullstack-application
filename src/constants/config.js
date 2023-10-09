@@ -34,7 +34,7 @@ export const tiersData = [
         price: '0',
         description: [
             '1 Portfolio',
-            '10 Holdings',
+            '2 Holdings (5 Quantity)',
             '1 Custom group',
             'Limited reporting',
             'Basic support',
@@ -48,7 +48,7 @@ export const tiersData = [
         price: '700',
         description: [
             '1 Portfolio',
-            '30 Holdings',
+            '5 Holdings (20 Quantity)',
             '3 Custom groups',
             'Limited reporting',
             'Standard support',
