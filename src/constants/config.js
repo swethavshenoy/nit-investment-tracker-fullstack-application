@@ -265,31 +265,31 @@ export const transactions = [
 ];
 
 export const stockHoldingData = [
-    { logo: bajaj, name: 'Bajaj', shares: '₹310.4', return: '-110%', state: 'grow' },
-    { logo: meta, name: 'Meta', shares: '₹310.4', return: '-110%', state: 'down' },
-    { logo: microsoft, name: 'Microsoft', shares: '₹310.4', return: '-110%', state: 'grow' },
-    { logo: tata, name: 'Tata', shares: '₹310.4', return: '-110%', state: 'grow' },
+    { logo: bajaj, name: 'Bajaj', shares: '₹1637.80', return: '+0.95%', state: 'grow' },
+    { logo: meta, name: 'Meta', shares: '$318.36', return: '+0.93%', state: 'grow' },
+    { logo: microsoft, name: 'Microsoft', shares: '$329.82', return: '+0.78%', state: 'grow' },
+    { logo: tata, name: 'Tata', shares: '₹629.50', return: '+1.97%', state: 'grow' },
 
-    { logo: sony, name: 'Sony', shares: '₹310.4', return: '-110%', state: 'grow' },
-    { logo: google, name: 'Google', shares: '₹310.4', return: '-110%', state: 'down' },
-    { logo: amazon, name: 'Amazon', shares: '₹310.4', return: '-110%', state: 'down' },
-    { logo: apple, name: 'Apple', shares: '₹310.4', return: '-110%', state: 'grow' },
+    { logo: sony, name: 'Sony', shares: '¥12605.00', return: '+2.81%', state: 'grow' },
+    { logo: google, name: 'Google', shares: '$138.42', return: '+0.61%', state: 'grow' },
+    { logo: amazon, name: 'Amazon', shares: '$128.26', return: '+0.23%', state: 'grow' },
+    { logo: apple, name: 'Apple', shares: '$178.99', return: '+0.85%', state: 'grow' },
 ];
 
 export const stockWishlistData = [
-    { logo: apple, name: 'Apple', id: 'APPLE', shares: '₹310.4', return: '-110%', count: 0 },
-    { logo: indigo, name: 'Indigo', id: 'INGO', shares: '₹310.4', return: '-110%', count: 0 },
-    { logo: sony, name: 'Sony', id: 'SONY', shares: '₹310.4', return: '-110%', count: 0 },
-    { logo: amazon, name: 'Amazon', id: 'AMZ', shares: '₹310.4', return: '-110%', count: 0 },
-    { logo: bajaj, name: 'Bajaj', id: 'BAJAJ', shares: '₹310.4', return: '-110%', count: 0 },
-    { logo: tata, name: 'Tata', id: 'TATA', shares: '₹310.4', return: '-110%', count: 0 },
-    { logo: airtel, name: 'Airtel', id: 'ARTL', shares: '₹310.4', return: '-110%', count: 0 },
+    { logo: apple, name: 'Apple', id: 'APPLE', shares: '$178.99', return: '+0.85%', count: 0 },
+    { logo: indigo, name: 'Indigo', id: 'INGO', shares: '₹2487.00', return: '+0.56%', count: 0 },
+    { logo: sony, name: 'Sony', id: 'SONY', shares: '¥12605.00', return: '+2.81%', count: 0 },
+    { logo: amazon, name: 'Amazon', id: 'AMZ', shares: '$128.26', return: '+0.23%', count: 0 },
+    { logo: bajaj, name: 'Bajaj', id: 'BAJAJ', shares: '₹1637.80', return: '+0.95%', count: 0 },
+    { logo: tata, name: 'Tata', id: 'TATA', shares: '₹629.50', return: '+1.97%', count: 0 },
+    { logo: airtel, name: 'Airtel', id: 'ARTL', shares: '₹948.20', return: '+2.56%', count: 0 },
 
-    { logo: spotify, name: 'Spotify', id: 'SPOT', shares: '₹310.4', return: '-110%', count: 0 },
-    { logo: shopify, name: 'Shopify', id: 'SHOP', shares: '₹310.4', return: '-110%', count: 0 },
-    { logo: dropbox, name: 'Dropbox Inc', id: 'DBX', shares: '₹310.4', return: '-110%', count: 0 },
-    { logo: microsoft, name: 'Microsoft', id: 'MICRO', shares: '₹310.4', return: '-110%', count: 0 },
-    { logo: google, name: 'Google', id: 'GOOGLE', shares: '₹310.4', return: '-110%', count: 0 },
-    { logo: meta, name: 'Meta', id: 'META', shares: '₹310.4', return: '-110%', count: 0 },
-    { logo: paypal, name: 'Paypal', id: 'PYPL', shares: '₹310.4', return: '-110%', count: 0 },
+    { logo: spotify, name: 'Spotify', id: 'SPOT', shares: '$156.45', return: '-2.54%', count: 0 },
+    { logo: shopify, name: 'Shopify', id: 'SHOP', shares: '$53.51', return: '-2.06%', count: 0 },
+    { logo: dropbox, name: 'Dropbox Inc', id: 'DBX', shares: '$27.91', return: '+1.01%', count: 0 },
+    { logo: microsoft, name: 'Microsoft', id: 'MICRO', shares: '$329.82', return: '+0.78%', count: 0 },
+    { logo: google, name: 'Google', id: 'GOOGLE', shares: '$138.42', return: '+0.61%', count: 0 },
+    { logo: meta, name: 'Meta', id: 'META', shares: '$318.36', return: '+0.93%', count: 0 },
+    { logo: paypal, name: 'Paypal', id: 'PYPL', shares: '$57.96', return: '+0.33%', count: 0 },
 ]
