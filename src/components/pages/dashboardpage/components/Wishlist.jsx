@@ -7,7 +7,7 @@ const Wishlist = (props) => {
     const { data, handleAddRemove } = props;
 
     return (
-        <Paper sx={{
+        <Paper className='scroll-bar' sx={{
             backgroundColor: '#fff', borderRadius: 6, boxShadow: '0px 5px 10px 0px rgba(0, 0, 0, 0.5)', padding: 3, overflow: 'auto', maxHeight: 500,
         }}>
             <Typography color="#33333" paragraph>Stocks</Typography>

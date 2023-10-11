@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -11,22 +11,24 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Payment from './components/Payment';
 import Review from './components/Review';
+import { useLocation } from 'react-router-dom';
 
 const steps = ['Payment details', 'Review your purchase'];
 
-function getStepContent(step) {
+function getStepContent(step, state) {
     switch (step) {
         case 0:
             return <Payment />;
         case 1:
-            return <Review />;
+            return <Review state={state} />;
         default:
             throw new Error('Unknown step');
     }
 }
 
 export default function Checkout() {
-    const [activeStep, setActiveStep] = React.useState(0);
+    const [activeStep, setActiveStep] = useState(0);
+    const { state } = useLocation();
 
     const handleNext = () => {
         setActiveStep(activeStep + 1);
@@ -37,7 +39,7 @@ export default function Checkout() {
     };
 
     return (
-        <React.Fragment>
+        <>
             <CssBaseline />
             <AppBar
                 position="absolute"
@@ -61,7 +63,7 @@ export default function Checkout() {
                         ))}
                     </Stepper>
                     {activeStep === steps.length ? (
-                        <React.Fragment>
+                        <>
                             <Typography variant="h5" gutterBottom>
                                 Payment Successful,
                                 Thank you for your purchase.
@@ -70,10 +72,10 @@ export default function Checkout() {
                                 Your purchase number is #2001539. We have emailed your purchase
                                 confirmation.
                             </Typography>
-                        </React.Fragment>
+                        </>
                     ) : (
-                        <React.Fragment>
-                            {getStepContent(activeStep)}
+                        <>
+                            {getStepContent(activeStep, state)}
                             <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                                 {activeStep !== 0 && (
                                     <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
@@ -89,10 +91,10 @@ export default function Checkout() {
                                     {activeStep === steps.length - 1 ? 'Make Payment' : 'Next'}
                                 </Button>
                             </Box>
-                        </React.Fragment>
+                        </>
                     )}
                 </Paper>
             </Container>
-        </React.Fragment>
+        </>
     );
 }

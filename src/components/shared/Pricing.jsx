@@ -1,8 +1,17 @@
 import React from 'react'
 import { Typography, Container, Box, Button, Grid, Card, CardHeader, CardContent, CardActions } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const Pricing = (props) => {
     const { tiersData } = props;
+
+    const navigate = useNavigate();
+
+
+    const handlePay = (e) => {
+        navigate('/checkout', { state: e });
+    }
+
     return (
         <>
             <Container disableGutters maxWidth="sm" component="main" sx={{ pb: 2 }}>
@@ -57,7 +66,7 @@ const Pricing = (props) => {
                                             ₹{tier.price}
                                         </Typography>
                                         <Typography variant="h6" color="#646068">
-                                            /Month
+                                            /Year
                                         </Typography>
                                     </Box>
                                     <ul>
@@ -76,7 +85,7 @@ const Pricing = (props) => {
                                 <CardActions>
                                     <Button color='primary'
                                         fullWidth
-                                        variant={tier.buttonVariant}>
+                                        variant={tier.buttonVariant} onClick={() => handlePay(tier)}>
                                         {tier.buttonText}
                                     </Button>
                                 </CardActions>
