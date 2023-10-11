@@ -14,6 +14,7 @@ import Pricing from './components/shared/Pricing';
 import './App.css';
 import { tiersData } from './constants/config'
 import TransactionHistory from './components/pages/dashboardpage/components/TransactionHistory';
+import MyProfile from './components/pages/dashboardpage/components/MyProfile';
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/pricing" element={<Pricing tiersData={tiersData} />} />
           <Route path="/transactionhistory" element={<TransactionHistory />} />
+          <Route path="/myprofile" element={<MyProfile />} />
         </Routes>
       </Default>
     </>
