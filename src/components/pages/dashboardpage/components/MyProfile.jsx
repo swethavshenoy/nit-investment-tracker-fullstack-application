@@ -18,6 +18,7 @@ const initialCustomerDetails = {
     profileId: '12345',
     firstName: 'John',
     lastName: 'Doe',
+    gender: 'Male',
     email: 'john.doe@example.com',
     phoneNumber: '123-456-7890',
     address: '123 Main St, City, Country',
@@ -69,10 +70,11 @@ const MyProfile = () => {
                     </Grid>
                     <Grid item xs={6}>
                         <TextField
-                            name="dateOfBirth"
-                            label="Date of Birth"
-                            type="date"
-                            value={customerDetails.dateOfBirth}
+                            name="gender"
+                            label="Gender"
+                            type="text"
+                            value={customerDetails.gender}
+                            onChange={handleChange}
                             fullWidth
                             className={classes.textField}
                             disabled={!isEditing}
@@ -145,7 +147,7 @@ const MyProfile = () => {
                             disabled={!isEditing}
                         />
                     </Grid>
-                    <Grid item xs={12}>
+                    {/* <Grid item xs={12}>
                         <TextField
                             name="bio"
                             label="Bio"
@@ -156,7 +158,7 @@ const MyProfile = () => {
                             multiline
                             disabled={!isEditing}
                         />
-                    </Grid>
+                    </Grid> */}
                     {isEditing ? (
                         <Button variant="contained" color="primary" onClick={handleSave}>
                             Save

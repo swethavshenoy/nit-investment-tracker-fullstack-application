@@ -4,7 +4,7 @@ import Footer from './Footer';
 import LoginModal from './LoginModal';
 import { navItems, profileItems } from '../../constants/config';
 
-const Default = ({ children, cartCount }) => {
+const Default = ({ children, cartData }) => {
 
     const [showLogin, setShowLogin] = useState(false);
 
@@ -15,7 +15,7 @@ const Default = ({ children, cartCount }) => {
 
     return (
         <>
-            <NavBar navItems={navItems} profileItem={profileItems} handleSignIn={handleSignIn} cartCount={cartCount} />
+            <NavBar navItems={navItems} profileItem={profileItems} handleSignIn={handleSignIn} cartData={cartData} />
             <LoginModal showLogin={showLogin} handleClose={handleSignIn} />
             <main>
                 {children}

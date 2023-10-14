@@ -32,9 +32,9 @@ const Wishlist = (props) => {
                             </Grid>
 
                             <Grid item md={3} xs color="#646068" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', cursor: 'pointer' }}>
-                                <RemoveCircleOutlineRoundedIcon sx={{ pointerEvents: data.count === 0 && 'none' }} onClick={() => handleAddRemove('remove', data.id)} />
+                                <RemoveCircleOutlineRoundedIcon sx={{ pointerEvents: data.count === 0 && 'none' }} onClick={() => handleAddRemove('remove', data)} />
                                 <Typography paragraph fontWeight="500" sx={{ mb: 0 }}>{data.count}</Typography>
-                                <AddCircleOutlineRoundedIcon onClick={() => handleAddRemove('add', data.id)} />
+                                <AddCircleOutlineRoundedIcon onClick={() => handleAddRemove('add', data)} />
                             </Grid>
 
                         </Grid>

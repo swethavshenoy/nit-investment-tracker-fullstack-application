@@ -79,7 +79,7 @@ export const navItems = [
 ];
 
 export const profileItems = [
-    { name: 'My Profile', path: 'investment' },
+    { name: 'My Profile', path: 'myprofile' },
     { name: 'Transaction History', path: 'history' },
     { name: 'Pricing', path: 'pricing' },
     { name: 'Logout', path: 'logout' },
@@ -277,19 +277,19 @@ export const stockHoldingData = [
 ];
 
 export const stockWishlistData = [
-    { logo: apple, name: 'Apple', id: 'APPLE', shares: '₹14,900.91', return: '+0.85%', count: 0 },
-    { logo: indigo, name: 'Indigo', id: 'INGO', shares: '₹2487.00', return: '+0.56%', count: 0 },
-    { logo: sony, name: 'Sony', id: 'SONY', shares: '₹7,058.8', return: '+2.81%', count: 0 },
-    { logo: amazon, name: 'Amazon', id: 'AMZ', shares: '₹10,677.64', return: '+0.23%', count: 0 },
-    { logo: bajaj, name: 'Bajaj', id: 'BAJAJ', shares: '₹1637.80', return: '+0.95%', count: 0 },
-    { logo: tata, name: 'Tata', id: 'TATA', shares: '₹629.50', return: '+1.97%', count: 0 },
-    { logo: airtel, name: 'Airtel', id: 'ARTL', shares: '₹948.20', return: '+2.56%', count: 0 },
+    { logo: apple, name: 'Apple', id: 'APPLE', shares: 14900.91, return: '+0.85%', count: 0 },
+    { logo: indigo, name: 'Indigo', id: 'INGO', shares: 2487.00, return: '+0.56%', count: 0 },
+    { logo: sony, name: 'Sony', id: 'SONY', shares: 7058.8, return: '+2.81%', count: 0 },
+    { logo: amazon, name: 'Amazon', id: 'AMZ', shares: 10677.64, return: '+0.23%', count: 0 },
+    { logo: bajaj, name: 'Bajaj', id: 'BAJAJ', shares: 1637.80, return: '+0.95%', count: 0 },
+    { logo: tata, name: 'Tata', id: 'TATA', shares: 629.50, return: '+1.97%', count: 0 },
+    { logo: airtel, name: 'Airtel', id: 'ARTL', shares: 948.20, return: '+2.56%', count: 0 },
 
-    { logo: spotify, name: 'Spotify', id: 'SPOT', shares: '₹13,024.46', return: '-2.54%', count: 0 },
-    { logo: shopify, name: 'Shopify', id: 'SHOP', shares: '₹4,454.70', return: '-2.06%', count: 0 },
-    { logo: dropbox, name: 'Dropbox Inc', id: 'DBX', shares: '₹2323.50', return: '+1.01%', count: 0 },
-    { logo: microsoft, name: 'Microsoft', id: 'MICRO', shares: '₹27,457.5', return: '+0.78%', count: 0 },
-    { logo: google, name: 'Google', id: 'GOOGLE', shares: '₹11,523.46', return: '+0.61%', count: 0 },
-    { logo: meta, name: 'Meta', id: 'META', shares: '₹26,503.4', return: '+0.93%', count: 0 },
-    { logo: paypal, name: 'Paypal', id: 'PYPL', shares: '₹4,825.17', return: '+0.33%', count: 0 },
+    { logo: spotify, name: 'Spotify', id: 'SPOT', shares: 13024.46, return: '-2.54%', count: 0 },
+    { logo: shopify, name: 'Shopify', id: 'SHOP', shares: 4454.70, return: '-2.06%', count: 0 },
+    { logo: dropbox, name: 'Dropbox Inc', id: 'DBX', shares: 2323.50, return: '+1.01%', count: 0 },
+    { logo: microsoft, name: 'Microsoft', id: 'MICRO', shares: 27457.5, return: '+0.78%', count: 0 },
+    { logo: google, name: 'Google', id: 'GOOGLE', shares: 11523.46, return: '+0.61%', count: 0 },
+    { logo: meta, name: 'Meta', id: 'META', shares: 26503.4, return: '+0.93%', count: 0 },
+    { logo: paypal, name: 'Paypal', id: 'PYPL', shares: 4825.17, return: '+0.33%', count: 0 },
 ]

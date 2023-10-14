@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container, Typography, Grid } from '@mui/material';
 import { stockHoldingData, stockWishlistData } from '../../../constants/config';
 import StockHolding from './components/StockHolding';
@@ -18,23 +18,29 @@ const DashboardPage = (props) => {
     const [wishListData, setWishListData] = useState(stockWishlistData);
     const [openAlert, setOpenAlert] = useState(false);
 
+    useEffect(() => {
+        props.func({});
+    }, []);
+
     const handleToggle = (e) => {
         const data = e === 'next' ? stockHoldingData.slice(-4) : stockHoldingData.slice(0, 4);
         setActiveToggle(e);
         setStockData(data);
     }
 
-    const handleAddRemove = (e, id) => {
-        const data = wishListData.map(el => el.id === id ? (e === 'add' ? { ...el, count: el.count + 1 } : { ...el, count: el.count - 1 }) : el);
-        console.log(data)
+    const handleAddRemove = (e, obj) => {
+        const data = wishListData.map(el => el.id === obj.id ? (e === 'add' ? { ...el, count: el.count + 1 } : { ...el, count: el.count - 1 }) : el);
         setWishListData(data);
-        const sum = data.reduce((accumulator, object) => accumulator + object.count, 0);
-        if (sum >= 5) {
+        const cartCount = data.reduce((accumulator, object) => accumulator + object.count, 0);
+        if (cartCount >= 5) {
             setOpenAlert(true);
         } else {
             setOpenAlert(false);
         }
-        props.func(sum);
+        const cartData = data.filter(el => el.count > 0);
+        const shareData = cartData.map(el => ({ ...el, shares: el.shares * el.count }))
+        const totalShares = shareData.reduce((sum, val) => sum + val.shares, 0);
+        props.func({ cartCount, cartData, totalShares });
     }
 
     const handleClose = () => {

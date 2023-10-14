@@ -1,22 +1,5 @@
 import * as React from 'react';
-import Typography from '@mui/material/Typography';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import Grid from '@mui/material/Grid';
-
-// const products = [
-//     {
-//         name: 'Product 1',
-//         desc: 'A nice thing',
-//         price: '₹9.99',
-//     },
-//     {
-//         name: 'Product 2',
-//         desc: 'Another thing',
-//         price: '₹3.45',
-//     },
-// ];
+import { Grid, Typography, List, Box, ListItem, ListItemText } from '@mui/material';
 
 const addresses = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
 const payments = [
@@ -34,20 +17,29 @@ export default function Review(props) {
                 Order summary
             </Typography>
             <List disablePadding>
-                {/* {products.map((product) => (
-                    <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
-                        <ListItemText primary={product.name} secondary={product.desc} />
-                        <Typography variant="body2">{product.price}</Typography>
+                {state?.cartData ?
+                    <>
+                        {state.cartData.map((product) => (
+                            <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+                                <img width={30} height={30} src={product.logo} alt="" />
+                                <ListItem key={product?.name} sx={{ py: 1, px: 0 }}>
+                                    <ListItemText primary={product?.name} secondary={"Qty - " + product?.count} />
+                                    <Typography variant="body2">{product?.shares.toFixed(2)}</Typography>
+                                </ListItem>
+                            </Box>
+                        ))}
+                    </>
+                    :
+                    <ListItem key={state.title} sx={{ py: 1, px: 0 }}>
+                        <ListItemText primary={state?.subheader} secondary={state?.description.join(' ')} />
+                        <Typography variant="body2">{state?.price}</Typography>
                     </ListItem>
-                ))} */}
-                <ListItem key={state.title} sx={{ py: 1, px: 0 }}>
-                    <ListItemText primary={state.subheader} secondary={state.description.join(' ')} />
-                    <Typography variant="body2">{state.price}</Typography>
-                </ListItem>
+
+                }
                 <ListItem sx={{ py: 1, px: 0 }}>
                     <ListItemText primary="Total" />
                     <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-                        ₹{state.price}
+                        ₹{state.price || state.totalShares.toFixed(2)}
                     </Typography>
                 </ListItem>
             </List>

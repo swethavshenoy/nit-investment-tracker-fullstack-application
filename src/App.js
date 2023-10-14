@@ -19,14 +19,14 @@ import MyProfile from './components/pages/dashboardpage/components/MyProfile';
 
 function App() {
 
-  const [cartCount, setCartCount] = useState(0);
+  const [cartData, setCartData] = useState({});
 
   const handleCartCount = (data) => {
-    setCartCount(data);
+    setCartData(data);
   }
   return (
     <>
-      <Default cartCount={cartCount}>
+      <Default cartData={cartData}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/feature" element={<FeaturePage />} />
@@ -36,7 +36,7 @@ function App() {
           <Route path="/dashboard" element={<DashboardPage func={handleCartCount} />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/pricing" element={<Pricing tiersData={tiersData} />} />
-          <Route path="/transactionhistory" element={<TransactionHistory />} />
+          <Route path="/history" element={<TransactionHistory />} />
           <Route path="/myprofile" element={<MyProfile />} />
         </Routes>
       </Default>

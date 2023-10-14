@@ -5,6 +5,7 @@ import Banner from '../../shared/Banner';
 import portfolio from '../../../images/features/portfolio-feature.jpg';
 import diversification from '../../../images/features/diversification.jpg';
 import BannerX from '../../shared/BannerX';
+import { useNavigate } from 'react-router-dom';
 
 
 const FeaturePage = () => {
@@ -13,13 +14,19 @@ const FeaturePage = () => {
 
     const bannerContentX = { title: 'See your diversification', description: 'Get deeper insights into your portfolio by exploring your asset allocation and diversification with the Diversity Report.', btnText: 'View pricing plans', image: diversification };
 
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate('/pricing')
+    }
+
     return (
         <>
             <Banner data={bannerContent} />
 
             <Cards data={featureCardTop} />
 
-            <BannerX data={bannerContentX} />
+            <BannerX data={bannerContentX} handleClick={handleClick} />
 
             <Cards data={featureCardBottom} />
 
