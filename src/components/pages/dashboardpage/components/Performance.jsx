@@ -35,14 +35,14 @@ const Performance = () => {
         //     }}
         //     height={500}
         // />
-        <ResponsiveContainer width="100%" height={500}>
+        <ResponsiveContainer>
             <LineChart data={data}>
                 <XAxis dataKey="Month" />
                 <YAxis dataKey="SharePrice" />
                 {/* <CartesianGrid vertical={false} /> */}
                 <Tooltip />
                 <Legend />
-                <Line type="monotone" dataKey="SharePrice" name="Share Price" stroke="#5a287d" />
+                <Line type="monotone" dataKey="SharePrice" name="Share Price" stroke="#5a287d" strokeWidth="3" />
             </LineChart>
         </ResponsiveContainer>
     )

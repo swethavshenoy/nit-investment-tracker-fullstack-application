@@ -51,7 +51,7 @@ const MyProfile = () => {
     return (
         <Container className={classes.root}>
             <Paper className={classes.paper}>
-                <Typography variant="h4" align='center' gutterBottom>
+                <Typography variant="h4" align='center' color="#5a287d" gutterBottom>
                     <Grid item xs={4} align='center'>
                         <Avatar src="/path-to-avatar-image.jpg" alt="User Avatar" className={classes.avatar} />
                     </Grid>

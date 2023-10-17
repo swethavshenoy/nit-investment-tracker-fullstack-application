@@ -6,6 +6,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import MenuDrop from '../shared/MenuDrop';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Badge from '@mui/material/Badge';
+import { useSelector } from 'react-redux';
 
 function notificationsLabel(count) {
     if (count === 0) {
@@ -22,7 +23,7 @@ const NavBar = (props) => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const { navItems, handleSignIn, profileItem, cartData } = props;
+    const { navItems, handleSignIn, profileItem } = props;
 
     const [anchorEl, setAnchorEl] = useState(null);
     const [profileEl, setProfileEl] = useState(null);
@@ -31,6 +32,7 @@ const NavBar = (props) => {
     const open = Boolean(anchorEl);
     const openProfile = Boolean(profileEl);
 
+    const cartData = useSelector((state) => state.cart);
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -61,7 +63,6 @@ const NavBar = (props) => {
 
     return (
         <AppBar position="sticky" sx={{ backgroundColor: '#5a287d' }}>
-            {console.log(cartData)}
             <Toolbar sx={{ justifyContent: 'space-between', display: "flex" }}>
                 <IconButton edge="start" aria-label="menu" onClick={() => handleNavigate('')}>
                     <img src={logo} alt='Image1' height={50} width={50} />

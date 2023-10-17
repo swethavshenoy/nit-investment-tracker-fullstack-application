@@ -15,7 +15,11 @@ import './App.css';
 import { tiersData } from './constants/config'
 import TransactionHistory from './components/pages/dashboardpage/components/TransactionHistory';
 import MyProfile from './components/pages/dashboardpage/components/MyProfile';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { Provider } from 'react-redux';
+import store from "./store";
 
+const queryClient = new QueryClient();
 
 function App() {
 
@@ -26,20 +30,24 @@ function App() {
   }
   return (
     <>
-      <Default cartData={cartData}>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/feature" element={<FeaturePage />} />
-          <Route path="/resource" element={<ResourcePage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/esg" element={<EsgPage />} />
-          <Route path="/dashboard" element={<DashboardPage func={handleCartCount} />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/pricing" element={<Pricing tiersData={tiersData} />} />
-          <Route path="/history" element={<TransactionHistory />} />
-          <Route path="/myprofile" element={<MyProfile />} />
-        </Routes>
-      </Default>
+      <QueryClientProvider client={queryClient}>
+        <Provider store={store}>
+          <Default cartData={cartData}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/feature" element={<FeaturePage />} />
+              <Route path="/resource" element={<ResourcePage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/esg" element={<EsgPage />} />
+              <Route path="/dashboard" element={<DashboardPage func={handleCartCount} />} />
+              <Route path="/checkout" element={<Checkout />} />
+              <Route path="/pricing" element={<Pricing tiersData={tiersData} />} />
+              <Route path="/history" element={<TransactionHistory />} />
+              <Route path="/myprofile" element={<MyProfile />} />
+            </Routes>
+          </Default>
+        </Provider>
+      </QueryClientProvider>
     </>
 
   )

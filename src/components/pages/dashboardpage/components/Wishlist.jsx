@@ -13,7 +13,7 @@ const Wishlist = (props) => {
             <Typography color="#33333" paragraph>Stocks</Typography>
             {
                 data.map(data => (
-                    <Box sx={{ mb: 3 }}>
+                    <Box key={data.id} sx={{ mb: 3 }}>
                         <Grid container spacing={2}>
                             <Grid item md={5} xs color="#5a287d">
                                 <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
@@ -27,7 +27,7 @@ const Wishlist = (props) => {
                             <Grid item md={4} xs color="#646068">
                                 <Box>
                                     <Typography sx={{ mb: 0 }} textAlign="right" color="warning" paragraph>{data.shares} </Typography>
-                                    <Typography sx={{ mb: 0 }} textAlign="right" color="warning" paragraph> {data.return} </Typography>
+                                    <Typography sx={{ mb: 0 }} textAlign="right" color="warning" paragraph> {data.returns} </Typography>
                                 </Box>
                             </Grid>
 

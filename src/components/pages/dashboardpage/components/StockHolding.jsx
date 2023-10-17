@@ -11,8 +11,8 @@ const StockHolding = (props) => {
         <Paper sx={{ backgroundColor: '#fff', borderRadius: 6, boxShadow: '0px 5px 10px 0px rgba(0, 0, 0, 0.5)', padding: 3, position: 'relative' }}>
             {activeToggle !== 'prev' && <img className='prev' width={25} height={25} src={prev} alt="" onClick={() => handleToggle('prev')} />}
             <Grid container spacing={1}>
-                {data.map(data => (
-                    <Grid item md={3} xs>
+                {data.map((data, i) => (
+                    <Grid key={i} item md={3} xs>
                         <Grid container spacing={1}>
                             <Grid item md={6} xs sx={{ mb: 1, color: '#5a287d' }}>
                                 <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
@@ -45,7 +45,7 @@ const StockHolding = (props) => {
                             </Grid>
                             <Grid item md={6} xs>
                                 <Typography textAlign="center" color="warning" sx={{ mb: 0 }} paragraph>
-                                    {data.return}
+                                    {data.returns}
                                 </Typography>
                             </Grid>
                         </Grid>
