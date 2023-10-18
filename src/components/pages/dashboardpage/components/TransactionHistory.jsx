@@ -45,7 +45,7 @@ const TransactionHistory = () => {
                         <TableHead>
                             <TableRow>
                                 <TableCell>ID</TableCell>
-                                <TableCell>Date</TableCell>
+                                <TableCell>Trasaction Date</TableCell>
                                 <TableCell>Description</TableCell>
                                 <TableCell>Company Name</TableCell>
                                 <TableCell>Quantity</TableCell>
@@ -56,10 +56,10 @@ const TransactionHistory = () => {
                             {transactions.map((transaction) => (
                                 <TableRow key={transaction.id}>
                                     <TableCell>{transaction.id}</TableCell>
-                                    <TableCell>{transaction.date}</TableCell>
+                                    <TableCell>{transaction.transactionDate}</TableCell>
                                     <TableCell>{transaction.description}</TableCell>
                                     <TableCell>{transaction.name}</TableCell>
-                                    <TableCell>{transaction.Quantity}</TableCell>
+                                    <TableCell>{transaction.quantity}</TableCell>
                                     <TableCell>₹{transaction.amount.toFixed(2)}</TableCell>
                                 </TableRow>
                             ))}
