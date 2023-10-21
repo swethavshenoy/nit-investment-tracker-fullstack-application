@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, Button, IconButton, Box, Avatar } from '@mui/material';
 import logo from '../../images/logo.jpg';
 import MenuIcon from '@mui/icons-material/Menu';
 import MenuDrop from '../shared/MenuDrop';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Badge from '@mui/material/Badge';
-import { useSelector } from 'react-redux';
+import { loginPopup } from '../../redux/loginPopupSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { isEmpty } from 'lodash';
 
 function notificationsLabel(count) {
     if (count === 0) {
@@ -21,18 +23,18 @@ function notificationsLabel(count) {
 const NavBar = (props) => {
 
     const navigate = useNavigate();
-    const location = useLocation();
+    const dispatch = useDispatch();
 
-    const { navItems, handleSignIn, profileItem } = props;
+    const { navItems, profileItem } = props;
 
     const [anchorEl, setAnchorEl] = useState(null);
     const [profileEl, setProfileEl] = useState(null);
-
 
     const open = Boolean(anchorEl);
     const openProfile = Boolean(profileEl);
 
     const cartData = useSelector((state) => state.cart);
+    const userData = JSON.parse(localStorage.getItem('userDetails'));
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -53,12 +55,17 @@ const NavBar = (props) => {
     }
 
     const handleProfileNavigate = (e) => {
+        e?.path === 'logout' && localStorage.clear();
         navigate(`/${e.path === 'logout' ? '' : e.path}`);
         handleClose();
     }
 
     const handleCartClick = (data) => {
         navigate('/checkout', { state: data });
+    }
+
+    const handleLogIn = () => {
+        dispatch(loginPopup(true));
     }
 
     return (
@@ -72,14 +79,14 @@ const NavBar = (props) => {
                     {navItems.map((item, index) => <Button key={index} onClick={() => handleNavigate(item)}>{item.name}</Button>)}
                 </Typography>
                 <Box sx={{ justifyContent: 'space-between', display: "flex" }}>
-                    {location.pathname !== '/dashboard' ?
+                    {isEmpty(userData) ?
                         <>
-                            <Button onClick={handleSignIn}>LogIn</Button>
+                            <Button onClick={handleLogIn}>LogIn</Button>
                             <Button>SignUp</Button>
                         </> :
                         <Typography variant="h5" component="div">
                             <MenuDrop open={openProfile} handleClick={handleProfileClick} anchorEl={profileEl} handleClose={handleClose} navItems={profileItem} handleNavigate={handleProfileNavigate}>
-                                <Avatar sx={{ bgcolor: '#fff', color: '#5a287d', fontWeight: 'bold' }} >SC</Avatar>
+                                <Avatar sx={{ bgcolor: '#fff', color: '#5a287d', fontWeight: 'bold' }} >{userData?.fname[0] + userData.lname[0]}</Avatar>
                             </MenuDrop>
                             <IconButton aria-label={notificationsLabel(100)}>
                                 <Badge badgeContent={cartData.cartCount || '0'} color="secondary">

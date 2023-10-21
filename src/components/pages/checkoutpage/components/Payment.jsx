@@ -5,7 +5,9 @@ import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
-export default function Payment() {
+export default function Payment(props) {
+    const { handlePayment, paymentObj } = props;
+
     return (
         <React.Fragment>
             <Typography variant="h6" gutterBottom>
@@ -20,6 +22,8 @@ export default function Payment() {
                         fullWidth
                         autoComplete="cc-name"
                         variant="standard"
+                        value={paymentObj.cname}
+                        onChange={(e) => handlePayment(e, 'cname')}
                     />
                 </Grid>
                 <Grid item xs={12} md={6}>
@@ -30,6 +34,9 @@ export default function Payment() {
                         fullWidth
                         autoComplete="cc-number"
                         variant="standard"
+                        type='number'
+                        value={paymentObj.cnumber}
+                        onChange={(e) => handlePayment(e, 'cnumber')}
                     />
                 </Grid>
                 <Grid item xs={12} md={6}>
@@ -40,6 +47,8 @@ export default function Payment() {
                         fullWidth
                         autoComplete="cc-exp"
                         variant="standard"
+                        value={paymentObj.cdate}
+                        onChange={(e) => handlePayment(e, 'cdate')}
                     />
                 </Grid>
                 <Grid item xs={12} md={6}>
@@ -51,6 +60,9 @@ export default function Payment() {
                         fullWidth
                         autoComplete="cc-csc"
                         variant="standard"
+                        inputProps={{ maxLength: 3 }}
+                        type='password'
+                        onChange={(e) => handlePayment(e, 'cvv')}
                     />
                 </Grid>
                 <Grid item xs={12}>

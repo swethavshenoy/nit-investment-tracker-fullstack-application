@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import CssBaseline from '@mui/material/CssBaseline';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -12,15 +13,19 @@ import Typography from '@mui/material/Typography';
 import Payment from './components/Payment';
 import Review from './components/Review';
 import { useLocation } from 'react-router-dom';
+import { cartItem } from '../../../redux/cartSlice'
+
+import { REACT_APP_API_BASE_URL } from '../../../env';
+import axios from 'axios';
 
 const steps = ['Payment details', 'Review your purchase'];
 
-function getStepContent(step, state) {
+function getStepContent(step, state, handlePayment, paymentObj) {
     switch (step) {
         case 0:
-            return <Payment />;
+            return <Payment handlePayment={handlePayment} paymentObj={paymentObj} />;
         case 1:
-            return <Review state={state} />;
+            return <Review state={state} paymentObj={paymentObj} />;
         default:
             throw new Error('Unknown step');
     }
@@ -28,15 +33,45 @@ function getStepContent(step, state) {
 
 export default function Checkout() {
     const [activeStep, setActiveStep] = useState(0);
-    const { state } = useLocation();
 
+    const [paymentObj, setPaymentObj] = useState({});
+
+    const userData = JSON.parse(localStorage.getItem('userDetails'));
+
+    const { state } = useLocation();
+    const dispatch = useDispatch();
+
+    async function handleSaveStock(data) {
+        const response = await axios.post(`${REACT_APP_API_BASE_URL}transactions/add`, data[0]);
+        if (!response) {
+            dispatch(cartItem({}));
+        } else {
+            alert('something went wrong');
+        }
+    }
     const handleNext = () => {
+        if (activeStep == 1) {
+            const data = state.cartData.map(element => ({
+                "id": Math.floor(Math.random() * 1000) + 1,
+                "emailid": userData.emailid,
+                "transactionDate": new Date().toLocaleDateString("en-US"),
+                "description": "Purchase",
+                "name": element.name,
+                "quantity": element.count,
+                "amount": element.shares
+            }));
+            handleSaveStock(data);
+        }
         setActiveStep(activeStep + 1);
     };
 
     const handleBack = () => {
         setActiveStep(activeStep - 1);
     };
+
+    const handlePayment = (e, key) => {
+        setPaymentObj(state => ({ ...state, [key]: e.target.value }))
+    }
 
     return (
         <>
@@ -75,7 +110,7 @@ export default function Checkout() {
                         </>
                     ) : (
                         <>
-                            {getStepContent(activeStep, state)}
+                            {getStepContent(activeStep, state, handlePayment, paymentObj)}
                             <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                                 {activeStep !== 0 && (
                                     <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>

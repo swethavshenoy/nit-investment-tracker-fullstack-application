@@ -79,6 +79,7 @@ export const navItems = [
 ];
 
 export const profileItems = [
+    { name: 'My Dashboard', path: 'dashboard' },
     { name: 'My Profile', path: 'myprofile' },
     { name: 'Transaction History', path: 'history' },
     { name: 'Pricing', path: 'pricing' },

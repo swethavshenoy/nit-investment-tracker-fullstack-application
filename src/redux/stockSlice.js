@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import { stockWishlistData } from '../constants/config';
 
 const stockSlice = createSlice({
     name: 'stock',

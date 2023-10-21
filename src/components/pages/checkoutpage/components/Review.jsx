@@ -4,13 +4,13 @@ import { Grid, Typography, List, Box, ListItem, ListItemText } from '@mui/materi
 const addresses = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
 const payments = [
     { name: 'Card type', detail: 'Visa' },
-    { name: 'Card holder', detail: 'Mr John Smith' },
-    { name: 'Card number', detail: 'xxxx-xxxx-xxxx-1234' },
-    { name: 'Expiry date', detail: '04/2024' },
+    { name: 'Card holder', key: 'cname' },
+    { name: 'Card number', key: 'cnumber' },
+    { name: 'Expiry date', key: 'cdate' },
 ];
 
 export default function Review(props) {
-    const { state } = props;
+    const { state, paymentObj } = props;
     return (
         <React.Fragment>
             <Typography variant="h6" gutterBottom>
@@ -57,12 +57,12 @@ export default function Review(props) {
                     </Typography>
                     <Grid container>
                         {payments.map((payment) => (
-                            <React.Fragment key={payment.name}>
+                            <React.Fragment key={payment.key}>
                                 <Grid item xs={6}>
                                     <Typography gutterBottom>{payment.name}</Typography>
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <Typography gutterBottom>{payment.detail}</Typography>
+                                    <Typography gutterBottom>{payment.detail || paymentObj[payment.key]}</Typography>
                                 </Grid>
                             </React.Fragment>
                         ))}

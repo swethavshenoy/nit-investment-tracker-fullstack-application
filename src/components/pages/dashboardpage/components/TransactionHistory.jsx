@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Typography, Table, TableContainer, TableHead, TableBody, TableRow, TableCell, Paper } from '@mui/material';
 import { makeStyles } from '@material-ui/core/styles';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { REACT_APP_API_BASE_URL } from '../../../../env';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
     tableContainer: {
@@ -28,11 +30,23 @@ const theme = createTheme({
 const TransactionHistory = () => {
     const classes = useStyles();
 
-    const transactions = [
-        { id: 1, date: '2023-10-01', description: 'Purchase A', name: 'Apple INC', Quantity: '4', amount: 100 },
-        { id: 2, date: '2023-10-05', description: 'Purchase B', name: 'Apple INC', Quantity: '4', amount: 50 },
-        { id: 3, date: '2023-10-10', description: 'Purchase C', name: 'Apple INC', Quantity: '4', amount: 75 },
-    ];
+    const [transactions, setTransaction] = useState([]);
+
+    const userData = JSON.parse(localStorage.getItem('userDetails'));
+
+    useEffect(() => {
+        getTrasactionData();
+    }, []);
+
+    async function getTrasactionData() {
+        const response = await axios.get(`${REACT_APP_API_BASE_URL}transactions/by-email/${userData.emailid}`);
+        if (response) {
+            setTransaction(response.data)
+        } else {
+            alert('something went wrong');
+        }
+    }
+
 
     return (
         <ThemeProvider theme={theme}>
@@ -53,7 +67,7 @@ const TransactionHistory = () => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {transactions.map((transaction) => (
+                            {transactions?.length && transactions.map((transaction) => (
                                 <TableRow key={transaction.id}>
                                     <TableCell>{transaction.id}</TableCell>
                                     <TableCell>{transaction.transactionDate}</TableCell>

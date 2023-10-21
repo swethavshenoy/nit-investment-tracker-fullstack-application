@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Button,
   TextField,
@@ -13,6 +13,11 @@ import {
 import { Email, VpnKey } from "@mui/icons-material";
 import NITLogo from "../../../images/logo.jpg";
 import CloseIcon from '@mui/icons-material/Close';
+import { REACT_APP_API_BASE_URL } from '../../../env';
+import { useDispatch } from 'react-redux';
+import { loginPopup } from '../../../redux/loginPopupSlice';
+import { userDetails } from '../../../redux/userDataSlice';
+import { stockItem } from '../../../redux/stockSlice'
 
 const styles = {
   root: {
@@ -66,8 +71,7 @@ const styles = {
   },
 };
 
-function LoginPage(props) {
-  const { handleClose } = props;
+function LoginPage() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -76,6 +80,8 @@ function LoginPage(props) {
   const [showPassword, setShowPassword] = useState(false);
   const [loginStatus, setLoginStatus] = useState("");
 
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -83,23 +89,40 @@ function LoginPage(props) {
     });
   };
 
+  const handleWatchList = async () => {
+    // const response = await axios.get(`${REACT_APP_API_BASE_URL}watchlist/`);
+    // console.log(response.data);
+    // if (response.data) {
+    // dispatch(stockItem(response.data));
+    handleClose();
+    navigate("/dashboard");
+    // }
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        "http://localhost:8089/login", // Adjust the login endpoint
-        formData
-      );
-      console.log("Login successful:", response.data);
-      setLoginStatus("Login successful");
+      const response = await axios.get(`${REACT_APP_API_BASE_URL}user-auth/user/${formData.email}`);
+      if (response.data.password === formData.password) {
+        localStorage.setItem('userDetails', JSON.stringify(response.data));
+        setLoginStatus("Login successful");
+        handleWatchList();
+      } else {
+        setLoginStatus("Incorrect Password");
+      }
 
       // Redirect to a different page after successful login if needed
     } catch (error) {
-      console.error("Login failed:", error);
-      setLoginStatus("Login failed");
+      setLoginStatus(error?.response?.data?.message || 'Login Failed. Please check your credentials');
     }
   };
+
+  const dispatch = useDispatch();
+
+  const handleClose = () => {
+    dispatch(loginPopup(false));
+  }
 
   return (
     <div style={styles.root}>
