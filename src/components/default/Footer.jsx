@@ -27,7 +27,7 @@ export default function Footer() {
                             About Us
                         </Typography>
                         <Typography variant="body2" color="#646068">
-                            We are XYZ company, dedicated to providing the best service to our
+                            We are NIT Private Limited, dedicated to providing the best service to our
                             customers.
                         </Typography>
                     </Grid>

@@ -7,6 +7,7 @@ const Pricing = (props) => {
 
     const navigate = useNavigate();
 
+    const userData = JSON.parse(localStorage.getItem('userDetails'));
 
     const handlePay = (e) => {
         navigate('/checkout', { state: e });
@@ -82,13 +83,13 @@ const Pricing = (props) => {
                                         ))}
                                     </ul>
                                 </CardContent>
-                                <CardActions>
+                                {userData?.usertype !== tier.title && <CardActions>
                                     <Button color='primary'
                                         fullWidth
                                         variant={tier.buttonVariant} onClick={() => handlePay(tier)}>
                                         {tier.buttonText}
                                     </Button>
-                                </CardActions>
+                                </CardActions>}
                             </Card>
                         </Grid>
                     ))}

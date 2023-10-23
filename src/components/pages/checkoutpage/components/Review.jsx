@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Grid, Typography, List, Box, ListItem, ListItemText } from '@mui/material';
 
-const addresses = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
 const payments = [
     { name: 'Card type', detail: 'Visa' },
     { name: 'Card holder', key: 'cname' },
@@ -11,6 +10,9 @@ const payments = [
 
 export default function Review(props) {
     const { state, paymentObj } = props;
+
+    const userData = JSON.parse(localStorage.getItem('userDetails'));
+
     return (
         <React.Fragment>
             <Typography variant="h6" gutterBottom>
@@ -20,7 +22,7 @@ export default function Review(props) {
                 {state?.cartData ?
                     <>
                         {state.cartData.map((product) => (
-                            <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+                            <Box key={product?.name} sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
                                 <img width={30} height={30} src={product.logo} alt="" />
                                 <ListItem key={product?.name} sx={{ py: 1, px: 0 }}>
                                     <ListItemText primary={product?.name} secondary={"Qty - " + product?.count} />
@@ -48,8 +50,8 @@ export default function Review(props) {
                     <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
                         Customer Details
                     </Typography>
-                    <Typography gutterBottom>John Smith</Typography>
-                    <Typography gutterBottom>{addresses.join(', ')}</Typography>
+                    <Typography gutterBottom>{userData.fname + ' ' + userData.lname}</Typography>
+                    <Typography gutterBottom>{userData.address}</Typography>
                 </Grid>
                 <Grid item container direction="column" xs={12} sm={6}>
                     <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>

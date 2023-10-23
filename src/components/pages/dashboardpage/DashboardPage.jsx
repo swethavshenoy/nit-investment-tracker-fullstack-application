@@ -6,17 +6,11 @@ import { Container, Typography, Grid } from '@mui/material';
 import StockHolding from './components/StockHolding';
 import Performance from './components/Performance';
 import Wishlist from './components/Wishlist';
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
 import { cartItem } from '../../../redux/cartSlice'
 import { stockItem } from '../../../redux/stockSlice'
 import { loader } from '../../../redux/loaderSlice'
 import { REACT_APP_API_BASE_URL } from '../../../env';
-
-
-const Alert = React.forwardRef(function Alert(props, ref) {
-    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
+import SnackAlert from '../../shared/SnackAlert';
 
 const retrieveWatchlist = async () => {
     const response = await axios.get(`${REACT_APP_API_BASE_URL}watchlist/`);
@@ -35,6 +29,7 @@ const DashboardPage = () => {
     const [stockDataPage, setStockDataPage] = useState([]);
     const [activeToggle, setActiveToggle] = useState('prev');
     const [openAlert, setOpenAlert] = useState(false);
+    const [alertMsg, setAlertMsg] = useState('');
     const [performance, setPerformance] = useState([]);
 
     const userData = JSON.parse(localStorage.getItem('userDetails'));
@@ -64,22 +59,22 @@ const DashboardPage = () => {
         }
     }
 
-    const { isLoading } = useQuery("wishlist", retrieveWatchlist, {
-        refetchOnWindowFocus: false,
-        refetchOnmount: false,
-        refetchOnReconnect: false,
-        retry: false,
-        onSuccess: (data) => dispatch(stockItem(data)),
-        onError: (error) => snackAlert(error.message)
-    });
+    // const { isLoading } = useQuery("wishlist", retrieveWatchlist, {
+    //     refetchOnWindowFocus: false,
+    //     refetchOnmount: false,
+    //     refetchOnReconnect: false,
+    //     retry: false,
+    //     onSuccess: (data) => dispatch(stockItem(data)),
+    //     onError: (error) => { setOpenAlert(true); setAlertMsg(error.message) }
+    // });
 
-    const { isLoadingTreding } = useQuery("trending", retrieveTrending, {
+    const { isLoading } = useQuery("trending", retrieveTrending, {
         refetchOnWindowFocus: false,
         refetchOnmount: false,
         refetchOnReconnect: false,
         retry: false,
         onSuccess: (data) => { setStockData(data); setStockDataPage(data.slice(0, 4)) },
-        onError: (error) => snackAlert(error.message)
+        onError: (error) => { setOpenAlert(true); setAlertMsg(error.message) }
     });
 
     dispatch(loader(isLoading));
@@ -102,6 +97,7 @@ const DashboardPage = () => {
         const cartCount = data.reduce((accumulator, object) => accumulator + object.count, 0);
         if (cartCount >= 5) {
             setOpenAlert(true);
+            setAlertMsg("You have reached max quantity, please upgrade your membership");
         } else {
             setOpenAlert(false);
         }
@@ -111,20 +107,9 @@ const DashboardPage = () => {
         dispatch(cartItem({ cartCount, cartData, totalShares }));
     }
 
-    const snackAlert = (msg) => {
-        return (
-            <Snackbar open={openAlert} autoHideDuration={6000} onClose={handleClose}>
-                <Alert onClose={handleClose} severity="warning"
-                    sx={{ width: '100%' }}>
-                    {msg}
-                </Alert>
-            </Snackbar>
-        )
-    }
-
     return (
         <Container>
-            {snackAlert("You have reached max quantity, please upgrade your membership")}
+            <SnackAlert openAlert={openAlert} handleClose={handleClose} msg={alertMsg} />
             <Typography color="#5a287d" component="h1" variant="h2" textAlign="center" fontWeight="400" sx={{ pb: 3, pt: 3 }}>
                 Welcome {userData.fname} !!!
             </Typography>

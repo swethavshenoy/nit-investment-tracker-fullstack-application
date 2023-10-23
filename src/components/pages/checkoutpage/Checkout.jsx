@@ -17,6 +17,7 @@ import { cartItem } from '../../../redux/cartSlice'
 
 import { REACT_APP_API_BASE_URL } from '../../../env';
 import axios from 'axios';
+import SnackAlert from '../../shared/SnackAlert';
 
 const steps = ['Payment details', 'Review your purchase'];
 
@@ -35,6 +36,11 @@ export default function Checkout() {
     const [activeStep, setActiveStep] = useState(0);
 
     const [paymentObj, setPaymentObj] = useState({});
+    const [purchaseId, setPurchaseId] = useState();
+
+    const [openAlert, setOpenAlert] = useState(false);
+    const [alertMsg, setAlertMsg] = useState('');
+    const [alertSeverity, setAlertSeverity] = useState('');
 
     const userData = JSON.parse(localStorage.getItem('userDetails'));
 
@@ -42,25 +48,79 @@ export default function Checkout() {
     const dispatch = useDispatch();
 
     async function handleSaveStock(data) {
-        const response = await axios.post(`${REACT_APP_API_BASE_URL}transactions/add`, data[0]);
-        if (!response) {
+        const response = await axios.post(`http://localhost:9975/transactions/add`, data[0]);
+        if (response) {
             dispatch(cartItem({}));
+            setOpenAlert(true);
+            setAlertSeverity('success');
+            setAlertMsg(`Transaction Successfull`);
         } else {
-            alert('something went wrong');
+            setOpenAlert(true);
+            setAlertMsg("Oops..Something went wrong");
         }
     }
+
+
+    async function handleSaveProfile(data) {
+        try {
+            const response = await axios.put(`http://localhost:9972/user-auth/update-user`, data);
+            if (response.status === 202) {
+                localStorage.setItem('userDetails', JSON.stringify(data));
+                setOpenAlert(true);
+                setAlertSeverity('success');
+                setAlertMsg(`You are now a ${data.title} member!!`);
+            } else {
+                setOpenAlert(true);
+                setAlertMsg("Oops..Something went wrong");
+            }
+        } catch (error) {
+            setOpenAlert(true);
+            setAlertMsg("Oops..Something went wrong");
+        }
+    }
+
+    function formStockObj(state, id) {
+        const currentDate = new Date();
+        const formattedDate = currentDate.toISOString().slice(0, 10);
+
+        const data = state.cartData.map(element => ({
+            "id": id,
+            "emailid": userData.emailid,
+            "transactionDate": formattedDate,
+            "description": "Purchase",
+            "name": element.name,
+            "quantity": element.count,
+            "amount": element.shares
+        }));
+
+        handleSaveStock(data);
+    }
+
+    const handleClose = () => {
+        setOpenAlert(false);
+    }
+
+    async function getProfileData() {
+        const response = await axios.get(`${REACT_APP_API_BASE_URL}user-auth/user/${userData.emailid}`);
+        if (response) {
+            const data = { ...response.data, usertype: state.title };
+            handleSaveProfile(data);
+        } else {
+            setOpenAlert(true);
+            setAlertMsg("Oops..Something went wrong");
+        }
+    }
+
     const handleNext = () => {
-        if (activeStep == 1) {
-            const data = state.cartData.map(element => ({
-                "id": Math.floor(Math.random() * 1000) + 1,
-                "emailid": userData.emailid,
-                "transactionDate": new Date().toLocaleDateString("en-US"),
-                "description": "Purchase",
-                "name": element.name,
-                "quantity": element.count,
-                "amount": element.shares
-            }));
-            handleSaveStock(data);
+        if (activeStep === 1) {
+            const id = Math.floor(Math.random() * 1000) + 1;
+            setPurchaseId(id);
+            if (state.cartData?.length) {
+                formStockObj(state, id);
+            } else {
+                getProfileData(id);
+            }
+
         }
         setActiveStep(activeStep + 1);
     };
@@ -75,6 +135,7 @@ export default function Checkout() {
 
     return (
         <>
+            <SnackAlert openAlert={openAlert} handleClose={handleClose} msg={alertMsg} severity={alertSeverity} />
             <CssBaseline />
             <AppBar
                 position="absolute"
@@ -104,7 +165,7 @@ export default function Checkout() {
                                 Thank you for your purchase.
                             </Typography>
                             <Typography variant="subtitle1">
-                                Your purchase number is #2001539. We have emailed your purchase
+                                Your purchase number is {purchaseId}. We have emailed your purchase
                                 confirmation.
                             </Typography>
                         </>

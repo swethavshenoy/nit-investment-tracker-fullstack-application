@@ -16,8 +16,8 @@ import CloseIcon from '@mui/icons-material/Close';
 import { REACT_APP_API_BASE_URL } from '../../../env';
 import { useDispatch } from 'react-redux';
 import { loginPopup } from '../../../redux/loginPopupSlice';
-import { userDetails } from '../../../redux/userDataSlice';
 import { stockItem } from '../../../redux/stockSlice'
+import SnackAlert from "../../shared/SnackAlert";
 
 const styles = {
   root: {
@@ -77,10 +77,13 @@ function LoginPage() {
     password: "",
   });
 
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword] = useState(false);
   const [loginStatus, setLoginStatus] = useState("");
+  const [openAlert, setOpenAlert] = useState(false);
+  const [alertMsg, setAlertMsg] = useState('');
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setFormData({
@@ -89,14 +92,24 @@ function LoginPage() {
     });
   };
 
-  const handleWatchList = async () => {
-    // const response = await axios.get(`${REACT_APP_API_BASE_URL}watchlist/`);
-    // console.log(response.data);
-    // if (response.data) {
-    // dispatch(stockItem(response.data));
-    handleClose();
-    navigate("/dashboard");
-    // }
+  // const handleWatchList = async () => {
+  //   handleClose();
+  //   navigate("/dashboard");
+  // }
+
+  async function handleWatchList() {
+    const response = await axios.get(`${REACT_APP_API_BASE_URL}watchlist/`);
+    if (response) {
+      dispatch(stockItem(response.data));
+      handleClose();
+      navigate("/dashboard");
+    } else {
+      setOpenAlert(true);
+      setAlertMsg("Oops..Something went wrong");
+    }
+  }
+  const handleCloseAlert = () => {
+    setOpenAlert(false);
   }
 
   const handleSubmit = async (e) => {
@@ -118,15 +131,13 @@ function LoginPage() {
     }
   };
 
-  const dispatch = useDispatch();
-
   const handleClose = () => {
     dispatch(loginPopup(false));
   }
 
   return (
     <div style={styles.root}>
-
+      <SnackAlert openAlert={openAlert} handleClose={handleCloseAlert} msg={alertMsg} />
       <Container component="main" style={styles.container}>
         <IconButton sx={{ position: 'absolute', top: 10, right: 10 }}
           edge="start"

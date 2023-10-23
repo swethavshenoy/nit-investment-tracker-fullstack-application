@@ -3,6 +3,7 @@ import { Container, Typography, Paper, Grid, TextField, Button, Avatar } from '@
 import { makeStyles } from '@material-ui/core/styles';
 import { REACT_APP_API_BASE_URL } from '../../../../env';
 import axios from 'axios';
+import SnackAlert from '../../../shared/SnackAlert';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -18,9 +19,11 @@ const useStyles = makeStyles((theme) => ({
 
 const MyProfile = () => {
     const classes = useStyles();
-    // const [customerDetails, setCustomerDetails] = useState({ ...initialCustomerDetails });
     const [customerDetails, setCustomerDetails] = useState({});
     const [isEditing, setIsEditing] = useState(false);
+    const [openAlert, setOpenAlert] = useState(false);
+    const [alertMsg, setAlertMsg] = useState('');
+    const [alertSeverity, setAlertSeverity] = useState('');
 
     useEffect(() => {
         getProfileData();
@@ -31,10 +34,10 @@ const MyProfile = () => {
     async function getProfileData() {
         const response = await axios.get(`${REACT_APP_API_BASE_URL}user-auth/user/${userData.emailid}`);
         if (response) {
-            console.log(response.data);
             setCustomerDetails({ ...response.data })
         } else {
-            alert('something went wrong');
+            setOpenAlert(true);
+            setAlertMsg("Oops..Something went wrong");
         }
     }
 
@@ -44,28 +47,28 @@ const MyProfile = () => {
 
     async function handleSaveProfile(data) {
         try {
-            const response = await axios.put(`https://cors-anywhere.herokyapp.com/${REACT_APP_API_BASE_URL}user-auth/update-user`, {
-                headers: {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-                    'Access-control-Allow-Headers': 'Content-Type, X-Auth-Token, Origin, Authorization'
-                }
-            }, data);
-            if (response.status === 200) {
-                alert("Profile updated successfully");
+            const response = await axios.put(`http://localhost:9972/user-auth/update-user`, data);
+            if (response.status === 202) {
+                setOpenAlert(true);
+                setAlertSeverity('success');
+                setAlertMsg(`Profile updated successfully`);
+                localStorage.setItem('userDetails', JSON.stringify(data));
             } else {
-                alert('Something went wrong');
+                setOpenAlert(true);
+                setAlertMsg("Oops..Something went wrong");
             }
         } catch (error) {
-            console.error("An error occurred:", error);
-            alert('Something went wrong');
+            setOpenAlert(true);
+            setAlertMsg("Oops..Something went wrong");
         }
+    }
+
+    const handleClose = () => {
+        setOpenAlert(false);
     }
 
     const handleSave = () => {
         setIsEditing(false);
-        // You can update the customer details on a server or in your state management system
-        console.log(customerDetails);
         handleSaveProfile(customerDetails);
     };
 
@@ -79,14 +82,16 @@ const MyProfile = () => {
 
     return (
         <Container className={classes.root}>
+            <SnackAlert openAlert={openAlert} handleClose={handleClose} msg={alertMsg} severity={alertSeverity} />
             <Paper className={classes.paper}>
                 <Typography variant="h4" align='center' color="#5a287d" gutterBottom>
-                    <Grid item xs={4} align='center'>
-                        <Avatar src="/path-to-avatar-image.jpg" alt="User Avatar" className={classes.avatar} />
+                    <Grid item xs={4} align='center' sx={{ pb: 2 }}>
+                        {/* <Avatar src="/path-to-avatar-image.jpg" alt="User Avatar" className={classes.avatar} /> */}
+                        <Avatar src="/broken-image.jpg" />
                     </Grid>
                     My Profile
                 </Typography>
-                <Grid container spacing={2}>
+                <Grid container spacing={2} sx={{ pt: 5 }}>
                     <Grid item xs={6}>
                         <TextField
                             name="profileId"
@@ -95,6 +100,7 @@ const MyProfile = () => {
                             fullWidth
                             className={classes.textField}
                             disabled='true'
+                            InputLabelProps={{ shrink: true }}
                         />
                     </Grid>
                     <Grid item xs={6}>
@@ -107,50 +113,55 @@ const MyProfile = () => {
                             fullWidth
                             className={classes.textField}
                             disabled={!isEditing}
+                            InputLabelProps={{ shrink: true }}
                         />
                     </Grid>
                     <Grid item xs={6}>
                         <TextField
-                            name="firstName"
+                            name="fname"
                             label="First Name"
                             value={customerDetails.fname}
                             onChange={handleChange}
                             fullWidth
                             className={classes.textField}
                             disabled={!isEditing}
+                            InputLabelProps={{ shrink: true }}
                         />
                     </Grid>
                     <Grid item xs={6}>
                         <TextField
-                            name="lastName"
+                            name="lname"
                             label="Last Name"
                             value={customerDetails.lname}
                             onChange={handleChange}
                             fullWidth
                             className={classes.textField}
                             disabled={!isEditing}
+                            InputLabelProps={{ shrink: true }}
                         />
                     </Grid>
                     <Grid item xs={6}>
                         <TextField
-                            name="email"
+                            name="emailid"
                             label="Email"
                             value={customerDetails.emailid}
                             onChange={handleChange}
                             fullWidth
                             className={classes.textField}
                             disabled={!isEditing}
+                            InputLabelProps={{ shrink: true }}
                         />
                     </Grid>
                     <Grid item xs={6}>
                         <TextField
-                            name="phoneNumber"
+                            name="phoneno"
                             label="Phone Number"
                             value={customerDetails.phoneno}
                             onChange={handleChange}
                             fullWidth
                             className={classes.textField}
                             disabled={!isEditing}
+                            InputLabelProps={{ shrink: true }}
                         />
                     </Grid>
                     <Grid item xs={12}>
@@ -162,11 +173,12 @@ const MyProfile = () => {
                             fullWidth
                             className={classes.textField}
                             disabled={!isEditing}
+                            InputLabelProps={{ shrink: true }}
                         />
                     </Grid>
                     <Grid item xs={6}>
                         <TextField
-                            name="dateOfBirth"
+                            name="dob"
                             label="Date of Birth"
                             type="date"
                             value={customerDetails.dob}
@@ -174,6 +186,7 @@ const MyProfile = () => {
                             fullWidth
                             className={classes.textField}
                             disabled={!isEditing}
+                            InputLabelProps={{ shrink: true }}
                         />
                     </Grid>
                     <Grid item xs={6}>
@@ -181,22 +194,22 @@ const MyProfile = () => {
                             name="usertype"
                             label="User Type"
                             value={customerDetails.usertype}
-                            onChange={handleChange}
                             fullWidth
                             className={classes.textField}
                             multiline
                             disabled='true'
+                            InputLabelProps={{ shrink: true }}
                         />
                     </Grid>
-                    {isEditing ? (
+                    {isEditing ?
                         <Button variant="contained" color="primary" onClick={handleSave}>
                             Save
                         </Button>
-                    ) : (
-                        <Button variant="contained" color="primary" onClick={handleEdit}>
-                            Edit
-                        </Button>
-                    )}
+                        : (
+                            <Button variant="contained" color="primary" onClick={handleEdit}>
+                                Edit
+                            </Button>
+                        )}
                 </Grid>
             </Paper>
         </Container>

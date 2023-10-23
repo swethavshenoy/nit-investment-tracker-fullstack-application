@@ -9,6 +9,7 @@ import Badge from '@mui/material/Badge';
 import { loginPopup } from '../../redux/loginPopupSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { isEmpty } from 'lodash';
+import SnackAlert from '../shared/SnackAlert';
 
 function notificationsLabel(count) {
     if (count === 0) {
@@ -29,6 +30,8 @@ const NavBar = (props) => {
 
     const [anchorEl, setAnchorEl] = useState(null);
     const [profileEl, setProfileEl] = useState(null);
+    const [openAlert, setOpenAlert] = useState(false);
+    const [alertMsg, setAlertMsg] = useState('');
 
     const open = Boolean(anchorEl);
     const openProfile = Boolean(profileEl);
@@ -61,7 +64,22 @@ const NavBar = (props) => {
     }
 
     const handleCartClick = (data) => {
-        navigate('/checkout', { state: data });
+        if (cartData.cartCount > 5 && userData.usertype === "Free") {
+            setOpenAlert(true);
+            setAlertMsg("You have reached max quantity, please upgrade your membership");
+        } else if (cartData.cartCount > 20 && userData.usertype === "Pro") {
+            setOpenAlert(true);
+            setAlertMsg("You have reached max quantity, please upgrade to Enterprise membership");
+        } else if (cartData.cartCount === 0) {
+            setOpenAlert(true);
+            setAlertMsg("Your cart is empty");
+        } else {
+            navigate('/checkout', { state: data });
+        }
+    }
+
+    const handleCloseAlert = () => {
+        setOpenAlert(false);
     }
 
     const handleLogIn = () => {
@@ -70,6 +88,7 @@ const NavBar = (props) => {
 
     return (
         <AppBar position="sticky" sx={{ backgroundColor: '#5a287d' }}>
+            <SnackAlert openAlert={openAlert} handleClose={handleCloseAlert} msg={alertMsg} />
             <Toolbar sx={{ justifyContent: 'space-between', display: "flex" }}>
                 <IconButton edge="start" aria-label="menu" onClick={() => handleNavigate('')}>
                     <img src={logo} alt='Image1' height={50} width={50} />

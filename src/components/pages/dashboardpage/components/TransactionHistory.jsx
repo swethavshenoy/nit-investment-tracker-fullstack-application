@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { REACT_APP_API_BASE_URL } from '../../../../env';
 import axios from 'axios';
+import SnackAlert from '../../../shared/SnackAlert';
 
 const useStyles = makeStyles((theme) => ({
     tableContainer: {
@@ -31,6 +32,8 @@ const TransactionHistory = () => {
     const classes = useStyles();
 
     const [transactions, setTransaction] = useState([]);
+    const [openAlert, setOpenAlert] = useState(false);
+    const [alertMsg, setAlertMsg] = useState('');
 
     const userData = JSON.parse(localStorage.getItem('userDetails'));
 
@@ -43,13 +46,18 @@ const TransactionHistory = () => {
         if (response) {
             setTransaction(response.data)
         } else {
-            alert('something went wrong');
+            setOpenAlert(true);
+            setAlertMsg("Oops..Something went wrong");
         }
     }
 
+    const handleClose = () => {
+        setOpenAlert(false);
+    }
 
     return (
         <ThemeProvider theme={theme}>
+            <SnackAlert openAlert={openAlert} handleClose={handleClose} msg={alertMsg} />
             <Container>
                 <Typography variant="h4" align='center' pt={2} color='#5a287d' gutterBottom>
                     My Transactions
