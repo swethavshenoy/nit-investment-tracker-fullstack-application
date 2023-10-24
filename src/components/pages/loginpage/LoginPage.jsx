@@ -16,8 +16,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { REACT_APP_API_BASE_URL } from '../../../env';
 import { useDispatch } from 'react-redux';
 import { loginPopup } from '../../../redux/loginPopupSlice';
-import { stockItem } from '../../../redux/stockSlice'
-import SnackAlert from "../../shared/SnackAlert";
+import { Box } from "@mui/system";
 
 const styles = {
   root: {
@@ -79,8 +78,6 @@ function LoginPage() {
 
   const [showPassword] = useState(false);
   const [loginStatus, setLoginStatus] = useState("");
-  const [openAlert, setOpenAlert] = useState(false);
-  const [alertMsg, setAlertMsg] = useState('');
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -92,26 +89,6 @@ function LoginPage() {
     });
   };
 
-  // const handleWatchList = async () => {
-  //   handleClose();
-  //   navigate("/dashboard");
-  // }
-
-  async function handleWatchList() {
-    const response = await axios.get(`${REACT_APP_API_BASE_URL}watchlist/`);
-    if (response) {
-      dispatch(stockItem(response.data));
-      handleClose();
-      navigate("/dashboard");
-    } else {
-      setOpenAlert(true);
-      setAlertMsg("Oops..Something went wrong");
-    }
-  }
-  const handleCloseAlert = () => {
-    setOpenAlert(false);
-  }
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -119,13 +96,11 @@ function LoginPage() {
       const response = await axios.get(`${REACT_APP_API_BASE_URL}user-auth/user/${formData.email}`);
       if (response.data.password === formData.password) {
         localStorage.setItem('userDetails', JSON.stringify(response.data));
-        setLoginStatus("Login successful");
-        handleWatchList();
+        handleClose();
+        navigate("/dashboard");
       } else {
         setLoginStatus("Incorrect Password");
       }
-
-      // Redirect to a different page after successful login if needed
     } catch (error) {
       setLoginStatus(error?.response?.data?.message || 'Login Failed. Please check your credentials');
     }
@@ -135,9 +110,12 @@ function LoginPage() {
     dispatch(loginPopup(false));
   }
 
+  const handleLogSignup = (e) => {
+    dispatch(loginPopup(e));
+  }
+
   return (
     <div style={styles.root}>
-      <SnackAlert openAlert={openAlert} handleClose={handleCloseAlert} msg={alertMsg} />
       <Container component="main" style={styles.container}>
         <IconButton sx={{ position: 'absolute', top: 10, right: 10 }}
           edge="start"
@@ -208,19 +186,16 @@ function LoginPage() {
             Log in
           </Button>
         </form>
-        <div>
+        <Box pt={3}>
           Don't have a NIT account?{" "}
-          <Link to="/register" style={{ color: "#4caf50" }}>
+          <Link onClick={() => handleLogSignup('signup')} style={{ color: "#5a287d" }}>
             <b>Sign up for free </b>
           </Link>
-        </div>
+        </Box>
         <div>
-          <Link to="/forgot-password" style={{ color: "#45a049" }}>
-            <b>Forgot Password?</b>
-          </Link>
         </div>
       </Container>
-    </div>
+    </div >
   );
 }
 export default LoginPage;

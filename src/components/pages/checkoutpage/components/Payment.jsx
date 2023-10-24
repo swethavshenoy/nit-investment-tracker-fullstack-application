@@ -34,7 +34,8 @@ export default function Payment(props) {
                         fullWidth
                         autoComplete="cc-number"
                         variant="standard"
-                        type='number'
+                        inputProps={{ maxLength: 16 }}
+                        helperText='Only numbers are allowed.'
                         value={paymentObj.cnumber}
                         onChange={(e) => handlePayment(e, 'cnumber')}
                     />
@@ -62,6 +63,7 @@ export default function Payment(props) {
                         variant="standard"
                         inputProps={{ maxLength: 3 }}
                         type='password'
+                        value={paymentObj.cvv}
                         onChange={(e) => handlePayment(e, 'cvv')}
                     />
                 </Grid>

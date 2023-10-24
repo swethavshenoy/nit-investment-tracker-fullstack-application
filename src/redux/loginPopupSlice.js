@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const loginPopupSlice = createSlice({
     name: 'loginPopup',
-    initialState: false,
+    initialState: '',
     reducers: {
         loginPopup: (state, action) => state = action.payload
     },

@@ -1,10 +1,19 @@
 import React from 'react'
 import { Typography, Container, Button, Grid } from '@mui/material';
 import { isEmpty } from 'lodash';
+import { useDispatch } from 'react-redux';
+import { loginPopup } from '../../redux/loginPopupSlice';
 
 const Banner = (props) => {
     const { data } = props;
     const userData = JSON.parse(localStorage.getItem('userDetails'));
+
+    const dispatch = useDispatch();
+
+    const handleSignup = () => {
+        dispatch(loginPopup('signup'));
+    }
+
     return (
         <Container sx={{ pt: 5, pb: 4 }}>
             <Grid container alignItems="center" spacing={5}>
@@ -15,7 +24,7 @@ const Banner = (props) => {
                     <Typography color="#646068" paragraph sx={{ pt: 5, pb: 5 }}>
                         {data.description}
                     </Typography>
-                    {data.btnText && isEmpty(userData) && <Button className='box' variant="contained" sx={{ pt: 1 }}>{data.btnText}</Button>}
+                    {data.btnText && isEmpty(userData) && <Button className='box' variant="contained" sx={{ pt: 1 }} onClick={handleSignup}>{data.btnText}</Button>}
                 </Grid>
                 <Grid item xs md={8}>
                     <img src={data.image} alt='portfolio' className="img-fluid" />

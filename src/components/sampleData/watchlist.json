@@ -1,0 +1,114 @@
+[
+    {
+        "id": "APPLE",
+        "logo": "https://github.com/swethavshenoy/first-repo/assets/148261234/c86d6f76-12d3-484c-9232-54f48e5d55b3",
+        "name": "Apple",
+        "shares": 14900.91,
+        "count": 0,
+        "returns": "+0.85%"
+    },
+    {
+        "id": "INGO",
+        "logo": "https://github.com/swethavshenoy/first-repo/assets/148261234/5b1b7e49-21c6-4880-8ee3-8f85f5dc434f",
+        "name": "Indigo",
+        "shares": 2487.00,
+        "count": 0,
+        "returns": "+0.56%"
+    },
+    {
+        "id": "SONY",
+        "logo": "https://github.com/swethavshenoy/first-repo/assets/148261234/bba8ec9f-9b47-4f26-a236-2b72774a3efc",
+        "name": "Sony",
+        "shares": 7058.8,
+        "count": 0,
+        "returns": "+2.81%"
+    },
+    {
+        "id": "AMZ",
+        "logo": "https://github.com/swethavshenoy/first-repo/assets/148261234/8147690f-a5a7-4411-9636-817e1d55fe8c",
+        "name": "Amazon",
+        "shares": 10677.64,
+        "count": 0,
+        "returns": "+0.23%"
+    },
+    {
+        "id": "BAJAJ",
+        "logo": "https://github.com/swethavshenoy/first-repo/assets/148261234/aac8f527-6633-4a1a-a4fb-ed7f7727582c",
+        "name": "Bajaj",
+        "shares": 1637.80,
+        "count": 0,
+        "returns": "+0.95%"
+    },
+    {
+        "id": "TATA",
+        "logo": "https://github.com/swethavshenoy/first-repo/assets/148261234/2cab3865-2617-4a2f-bc74-3e32a8bc4ba8",
+        "name": "Tata",
+        "shares": 629.50,
+        "count": 0,
+        "returns": "+1.97%"
+    },
+    {
+        "id": "ARTL",
+        "logo": "https://github.com/swethavshenoy/first-repo/assets/148261234/8ee6b504-9b86-4012-a36e-d596e62e236a",
+        "name": "Airtel",
+        "shares": 948.20,
+        "count": 0,
+        "returns": "+2.56%"
+    },
+    {
+        "id": "SPOT",
+        "logo": "https://github.com/swethavshenoy/first-repo/assets/148261234/1dcde980-1461-4ff8-af59-317ec02d0ed8",
+        "name": "Spotify",
+        "shares": 13024.46,
+        "count": 0,
+        "returns": "-2.54%"
+    },
+    {
+        "id": "SHOP",
+        "logo": "https://github.com/swethavshenoy/first-repo/assets/148261234/55c4348c-2bc8-4556-b65f-cb0f739cad33",
+        "name": "Shopify",
+        "shares": 4454.70,
+        "count": 0,
+        "returns": "-2.06%"
+    },
+    {
+        "id": "DBX",
+        "logo": "https://github.com/swethavshenoy/first-repo/assets/148261234/bf3922d2-dd23-43f5-b75f-b5d28201c6ff",
+        "name": "Dropbox Inc",
+        "shares": 2323.50,
+        "count": 0,
+        "returns": "+1.01%"
+    },
+    {
+        "id": "MICRO",
+        "logo": "https://github.com/swethavshenoy/first-repo/assets/148261234/05ede55c-e19e-4eec-a1d6-f17fb19d452b",
+        "name": "Microsoft",
+        "shares": 27457.5,
+        "count": 0,
+        "returns": "+0.78%"
+    },
+    {
+        "id": "GOOGLE",
+        "logo": "https://github.com/swethavshenoy/first-repo/assets/148261234/225fa787-68bf-4bb7-b834-d6009daa0997",
+        "name": "Google",
+        "shares": 11523.46,
+        "count": 0,
+        "returns": "+0.61%"
+    },
+    {
+        "id": "META",
+        "logo": "https://github.com/swethavshenoy/first-repo/assets/148261234/1373fb6d-6c72-400c-ab5d-f1a3bd99d034",
+        "name": "Meta",
+        "shares": 26503.4,
+        "count": 0,
+        "returns": "+0.93%"
+    },
+    {
+        "id": "PYPL",
+        "logo": "https://github.com/swethavshenoy/first-repo/assets/148261234/d32ac9e4-a089-482e-bc45-08ef435b16c8",
+        "name": "Paypal",
+        "shares": 4825.17,
+        "count": 0,
+        "returns": "+0.33%"
+    }
+]

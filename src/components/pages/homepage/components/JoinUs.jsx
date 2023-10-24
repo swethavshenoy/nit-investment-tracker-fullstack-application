@@ -2,9 +2,16 @@ import React from 'react'
 import { Typography, Container, Button, Grid } from '@mui/material';
 import pic1 from '../../../../images/pic1.jpg';
 import { isEmpty } from 'lodash';
+import { useDispatch } from 'react-redux';
+import { loginPopup } from '../../../../redux/loginPopupSlice';
 
 const JoinUs = () => {
     const userData = JSON.parse(localStorage.getItem('userDetails'));
+    const dispatch = useDispatch();
+
+    const handleSignup = () => {
+        dispatch(loginPopup('signup'));
+    }
     return (
         <Container>
             <Grid container spacing={5}>
@@ -14,7 +21,7 @@ const JoinUs = () => {
                         Create wealth for you and your family’s future goals with NIT. 100% Guaranteed returns.
                         The only way to see true performance is to see it in context. Sign up for free without any commitment.
                     </Typography>
-                    {isEmpty(userData) && <Button className='box' variant="contained" sx={{ pt: 1 }}>Signup for free</Button>}
+                    {isEmpty(userData) && <Button className='box' variant="contained" sx={{ pt: 1 }} onClick={handleSignup}>Signup for free</Button>}
                 </Grid>
                 <Grid item xs md={6}>
                     <img src={pic1} alt='Pic1' className="img-fluid" />

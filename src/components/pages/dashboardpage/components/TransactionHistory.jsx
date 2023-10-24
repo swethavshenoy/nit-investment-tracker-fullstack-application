@@ -1,95 +1,100 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Typography, Table, TableContainer, TableHead, TableBody, TableRow, TableCell, Paper } from '@mui/material';
-import { makeStyles } from '@material-ui/core/styles';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { REACT_APP_API_BASE_URL } from '../../../../env';
+import React, { useState } from 'react';
+import { Table, TableHead, TableBody, TableRow, TableCell, TableContainer, Paper, TextField, IconButton, Container, Typography, TableSortLabel } from '@mui/material';
+import { Search as SearchIcon } from '@mui/icons-material';
+import { transactionTableHeader } from '../../../../constants/config';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import SnackAlert from '../../../shared/SnackAlert';
-
-const useStyles = makeStyles((theme) => ({
-    tableContainer: {
-        margin: 'auto',
-        maxWidth: 800,
-        marginTop: theme.spacing(4),
-    },
-}));
-
-const theme = createTheme({
-    palette: {
-        primary: {
-            main: '#5a287d', // Change the primary color
-        },
-        secondary: {
-            main: '#646068', // Change the secondary color
-        },
-    },
-    typography: {
-        fontFamily: 'Arial, sans-serif', // Change the font
-    },
-});
+import { REACT_APP_API_BASE_URL } from '../../../../env';
+import { loader } from '../../../../redux/loaderSlice';
+import { useQuery } from 'react-query';
+import { transactionItem } from '../../../../redux/transactionSlice';
 
 const TransactionHistory = () => {
-    const classes = useStyles();
-
-    const [transactions, setTransaction] = useState([]);
-    const [openAlert, setOpenAlert] = useState(false);
-    const [alertMsg, setAlertMsg] = useState('');
-
     const userData = JSON.parse(localStorage.getItem('userDetails'));
+    const dispatch = useDispatch();
+    const [filter, setFilter] = useState('');
+    const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' });
 
-    useEffect(() => {
-        getTrasactionData();
-    }, []);
+    const transactionData = useSelector((state) => state.transaction);
 
-    async function getTrasactionData() {
-        const response = await axios.get(`${REACT_APP_API_BASE_URL}transactions/by-email/${userData.emailid}`);
-        if (response) {
-            setTransaction(response.data)
-        } else {
-            setOpenAlert(true);
-            setAlertMsg("Oops..Something went wrong");
+    const handleSort = (key) => {
+        let direction = 'asc';
+        if (sortConfig.key === key && sortConfig.direction === 'asc') {
+            direction = 'desc';
         }
+        setSortConfig({ key, direction });
+    };
+
+    const sortedData = [...transactionData].sort((a, b) => {
+        if (sortConfig.key) {
+            const valueA = a[sortConfig.key];
+            const valueB = b[sortConfig.key];
+
+            return typeof valueA === 'string' && typeof valueB === 'string'
+                ? sortConfig.direction === 'asc' ? valueA.localeCompare(valueB) : valueB.localeCompare(valueA)
+                : sortConfig.direction === 'asc' ? valueA - valueB : valueB - valueA;
+        }
+
+        return 0;
+    });
+
+    const filteredData = sortedData.filter((item) =>
+        filter === '' || item.name.toLowerCase().includes(filter.toLowerCase())
+    );
+
+    const retrieveTransaction = async () => {
+        const response = await axios.get(`${REACT_APP_API_BASE_URL}transactions/by-email/${userData.emailid}`);
+        return response.data.reverse();
     }
 
-    const handleClose = () => {
-        setOpenAlert(false);
-    }
+    const { isLoading: loaderTransaction } = useQuery("transaction", retrieveTransaction, {
+        enabled: !transactionData || !transactionData.length,
+        onSuccess: (data) => dispatch(transactionItem(data))
+    });
+
+    dispatch(loader(loaderTransaction));
 
     return (
-        <ThemeProvider theme={theme}>
-            <SnackAlert openAlert={openAlert} handleClose={handleClose} msg={alertMsg} />
-            <Container>
-                <Typography variant="h4" align='center' pt={2} color='#5a287d' gutterBottom>
+        <>
+            <Container align='center'>
+                <Typography variant="h4" align='center' pt={5} pb={3} color='#5a287d' gutterBottom>
                     My Transactions
                 </Typography>
-                <TableContainer component={Paper} className={classes.tableContainer}>
+
+                <TextField label="Filter by Name" value={filter} sx={{ width: 500, pb: 5 }} onChange={(e) => setFilter(e.target.value)}
+                    InputProps={{
+                        endAdornment: (
+                            <IconButton onClick={() => setFilter('')}>
+                                <SearchIcon />
+                            </IconButton>
+                        ),
+                    }}
+                />
+                <TableContainer component={Paper}>
                     <Table>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>ID</TableCell>
-                                <TableCell>Trasaction Date</TableCell>
-                                <TableCell>Description</TableCell>
-                                <TableCell>Company Name</TableCell>
-                                <TableCell>Quantity</TableCell>
-                                <TableCell>Amount</TableCell>
+                        <TableHead style={{ backgroundColor: "rgb(254, 173, 129)" }}>
+                            <TableRow style={{ cursor: 'pointer' }}>
+                                {transactionTableHeader.map(el =>
+                                    <TableCell style={{ color: '#5a287d' }} key={el.key} onClick={() => handleSort(el.key)}>{el.value}
+                                        <TableSortLabel active={sortConfig.key === el.key} direction={sortConfig.key === el.key ? sortConfig.direction : 'asc'}>
+                                        </TableSortLabel>
+                                    </TableCell>
+                                )}
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {transactions?.length && transactions.map((transaction) => (
-                                <TableRow key={transaction.id}>
-                                    <TableCell>{transaction.id}</TableCell>
-                                    <TableCell>{transaction.transactionDate}</TableCell>
-                                    <TableCell>{transaction.description}</TableCell>
-                                    <TableCell>{transaction.name}</TableCell>
-                                    <TableCell>{transaction.quantity}</TableCell>
-                                    <TableCell>₹{transaction.amount.toFixed(2)}</TableCell>
+                            {filteredData?.length ? filteredData.map((obj) =>
+                                <TableRow key={obj.id}>
+                                    {transactionTableHeader.map(el =>
+                                        <TableCell style={{ color: '#5a287d' }} key={el.key}>{el.key === 'amount' ? `₹${obj.amount.toFixed(2)}` : el.key === 'transactionDate' ? new Date(obj.transactionDate).toLocaleDateString('en-GB') : obj[el.key]}</TableCell>
+                                    )}
                                 </TableRow>
-                            ))}
+                            ) : <Typography variant="h6" align='center' pt={2} pb={2} color='#5a287d' gutterBottom>No Record Found!!!</Typography>}
                         </TableBody>
                     </Table>
                 </TableContainer>
             </Container>
-        </ThemeProvider>
+        </>
     );
 };
 

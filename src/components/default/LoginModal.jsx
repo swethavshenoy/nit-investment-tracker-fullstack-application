@@ -2,6 +2,7 @@ import React from 'react'
 import { Modal } from '@mui/material';
 import LoginPage from '../pages/loginpage/LoginPage';
 import { useSelector } from 'react-redux';
+import SignUp from '../pages/signuppage/SignUp';
 
 const LoginModal = () => {
     const showLogin = useSelector((state) => state.loginPopup);
@@ -14,7 +15,7 @@ const LoginModal = () => {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <LoginPage />
+                {showLogin === 'login' ? <LoginPage /> : <SignUp />}
             </Modal>
         </>
     )

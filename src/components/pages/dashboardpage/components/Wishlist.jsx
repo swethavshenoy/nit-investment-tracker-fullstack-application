@@ -10,7 +10,7 @@ const Wishlist = (props) => {
         <Paper className='scroll-bar' sx={{
             backgroundColor: '#fff', borderRadius: 6, boxShadow: '0px 5px 10px 0px rgba(0, 0, 0, 0.5)', padding: 3, overflow: 'auto', maxHeight: 500,
         }}>
-            <Typography color="#33333" paragraph>Stocks</Typography>
+            <Typography color="#33333" paragraph>Available Stocks</Typography>
             {
                 data.map(data => (
                     <Box key={data.id} sx={{ mb: 3 }}>
@@ -26,7 +26,7 @@ const Wishlist = (props) => {
                             </Grid>
                             <Grid item md={4} xs color="#646068">
                                 <Box>
-                                    <Typography sx={{ mb: 0 }} textAlign="right" color="warning" paragraph>{data.shares} </Typography>
+                                    <Typography sx={{ mb: 0 }} textAlign="right" color="warning" paragraph>₹{data.shares} </Typography>
                                     <Typography sx={{ mb: 0 }} textAlign="right" color="warning" paragraph> {data.returns} </Typography>
                                 </Box>
                             </Grid>

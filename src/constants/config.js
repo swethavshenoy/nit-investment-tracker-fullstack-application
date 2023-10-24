@@ -13,20 +13,6 @@ import event from '../images/resource/event.png'
 import env from '../images/esg/env.png'
 import social from '../images/esg/social.png'
 import supply from '../images/esg/supply.png'
-import apple from '../images/dashboard/apple.png'
-import meta from '../images/dashboard/meta.png'
-import microsoft from '../images/dashboard/microsoft.png'
-import google from '../images/dashboard/google.png'
-import spotify from '../images/dashboard/spotify.png'
-import shopify from '../images/dashboard/shopify.png'
-import dropbox from '../images/dashboard/dropbox.png'
-import paypal from '../images/dashboard/paypal.png'
-import sony from '../images/dashboard/sony.png'
-import amazon from '../images/dashboard/amazon.png'
-import bajaj from '../images/dashboard/bajaj.jpg'
-import tata from '../images/dashboard/Tata.png'
-import airtel from '../images/dashboard/airtel.jpg'
-import indigo from '../images/dashboard/indigo.png'
 
 export const tiersData = [
     {
@@ -83,6 +69,11 @@ export const profileItems = [
     { name: 'My Profile', path: 'myprofile' },
     { name: 'Transaction History', path: 'history' },
     { name: 'Pricing', path: 'pricing' },
+    { name: 'Logout', path: 'logout' },
+];
+
+export const checkoutItems = [
+    { name: 'My Dashboard', path: 'dashboard' },
     { name: 'Logout', path: 'logout' },
 ];
 
@@ -217,80 +208,12 @@ export const esgCardBottom = [
     },
 ];
 
-export const investments = [
-    {
-        id: 1,
-        name: 'Apple Inc. (AAPL)',
-        quantity: 50,
-        pricePerShare: 150,
-    },
-    {
-        id: 2,
-        name: 'Microsoft Corporation (MSFT)',
-        quantity: 30,
-        pricePerShare: 300,
-    },
-    {
-        id: 3,
-        name: 'Amazon.com Inc. (AMZN)',
-        quantity: 10,
-        pricePerShare: 3500,
-    },
-];
 
-export const transactions = [
-    {
-        id: 1,
-        type: 'Buy',
-        investment: 'Apple Inc. (AAPL)',
-        quantity: 10,
-        pricePerShare: 150,
-        totalCost: 1500,
-    },
-    {
-        id: 2,
-        type: 'Sell',
-        investment: 'Microsoft Corporation (MSFT)',
-        quantity: 15,
-        pricePerShare: 310,
-        totalCost: 4650,
-    },
-    {
-        id: 3,
-        type: 'Buy',
-        investment: 'Amazon.com Inc. (AMZN)',
-        quantity: 5,
-        pricePerShare: 3500,
-        totalCost: 17500,
-    },
-];
-
-export const stockHoldingData = [
-    { logo: bajaj, name: 'Bajaj', shares: '₹1637.80', return: '+0.95%', state: 'grow' },
-    { logo: meta, name: 'Meta', shares: '₹26,503.4', return: '+0.93%', state: 'grow' },
-    { logo: microsoft, name: 'Microsoft', shares: '₹27,457.5', return: '+0.78%', state: 'grow' },
-    { logo: tata, name: 'Tata', shares: '₹629.50', return: '+1.97%', state: 'grow' },
-
-    { logo: sony, name: 'Sony', shares: '₹7,058.8', return: '+2.81%', state: 'grow' },
-    { logo: google, name: 'Google', shares: '₹11,523.46', return: '+0.61%', state: 'grow' },
-    { logo: amazon, name: 'Amazon', shares: '₹10,677.64', return: '+0.23%', state: 'grow' },
-    { logo: apple, name: 'Apple', shares: '₹14,900.91', return: '+0.85%', state: 'grow' },
-];
-
-export const stockWishlistData = [
-    { logo: apple, name: 'Apple', id: 'APPLE', shares: 14900.91, return: '+0.85%', count: 0 },
-    { logo: indigo, name: 'Indigo', id: 'INGO', shares: 2487.00, return: '+0.56%', count: 0 },
-    { logo: sony, name: 'Sony', id: 'SONY', shares: 7058.8, return: '+2.81%', count: 0 },
-    { logo: amazon, name: 'Amazon', id: 'AMZ', shares: 10677.64, return: '+0.23%', count: 0 },
-    { logo: bajaj, name: 'Bajaj', id: 'BAJAJ', shares: 1637.80, return: '+0.95%', count: 0 },
-    { logo: tata, name: 'Tata', id: 'TATA', shares: 629.50, return: '+1.97%', count: 0 },
-    { logo: airtel, name: 'Airtel', id: 'ARTL', shares: 948.20, return: '+2.56%', count: 0 },
-
-    { logo: spotify, name: 'Spotify', id: 'SPOT', shares: 13024.46, return: '-2.54%', count: 0 },
-    { logo: shopify, name: 'Shopify', id: 'SHOP', shares: 4454.70, return: '-2.06%', count: 0 },
-    { logo: dropbox, name: 'Dropbox Inc', id: 'DBX', shares: 2323.50, return: '+1.01%', count: 0 },
-    { logo: microsoft, name: 'Microsoft', id: 'MICRO', shares: 27457.5, return: '+0.78%', count: 0 },
-    { logo: google, name: 'Google', id: 'GOOGLE', shares: 11523.46, return: '+0.61%', count: 0 },
-    { logo: meta, name: 'Meta', id: 'META', shares: 26503.4, return: '+0.93%', count: 0 },
-    { logo: paypal, name: 'Paypal', id: 'PYPL', shares: 4825.17, return: '+0.33%', count: 0 },
+export const transactionTableHeader = [
+    { key: 'id', value: 'Transaction ID' },
+    { key: 'transactionDate', value: 'Transaction Date' },
+    { key: 'description', value: 'Transaction Type' },
+    { key: 'name', value: 'Stock name' },
+    { key: 'quantity', value: 'Stock Quantity' },
+    { key: 'amount', value: 'Share Amount' },
 ]

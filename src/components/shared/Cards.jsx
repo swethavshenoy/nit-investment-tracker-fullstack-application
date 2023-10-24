@@ -18,7 +18,7 @@ const Cards = (props) => {
                                 image={obj.img}
                             />}
                             <CardContent sx={{ pt: 5, pb: 5 }}>
-                                <Typography color="#5a287d" gutterBottom variant="h4" component="h1" >
+                                <Typography color="#5a287d" gutterBottom variant="h5" component="h1" >
                                     {obj.title}
                                 </Typography>
                                 <Typography variant="body2" color="#646068">

@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Typography, Paper, Grid, TextField, Button, Avatar } from '@mui/material';
 import { makeStyles } from '@material-ui/core/styles';
-import { REACT_APP_API_BASE_URL } from '../../../../env';
 import axios from 'axios';
 import SnackAlert from '../../../shared/SnackAlert';
+import { useDispatch, useSelector } from 'react-redux';
+import { REACT_APP_API_BASE_URL } from '../../../../env';
+import { useQuery } from 'react-query';
+import { myprofileItem } from '../../../../redux/myprofileSlice';
+import { loader } from '../../../../redux/loaderSlice';
+import { isEmpty } from 'lodash';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -19,31 +24,36 @@ const useStyles = makeStyles((theme) => ({
 
 const MyProfile = () => {
     const classes = useStyles();
+    const dispatch = useDispatch();
     const [customerDetails, setCustomerDetails] = useState({});
     const [isEditing, setIsEditing] = useState(false);
     const [openAlert, setOpenAlert] = useState(false);
     const [alertMsg, setAlertMsg] = useState('');
     const [alertSeverity, setAlertSeverity] = useState('');
 
-    useEffect(() => {
-        getProfileData();
-    }, []);
-
+    const myprofileData = useSelector((state) => state.myprofile);
     const userData = JSON.parse(localStorage.getItem('userDetails'));
 
-    async function getProfileData() {
-        const response = await axios.get(`${REACT_APP_API_BASE_URL}user-auth/user/${userData.emailid}`);
-        if (response) {
-            setCustomerDetails({ ...response.data })
-        } else {
-            setOpenAlert(true);
-            setAlertMsg("Oops..Something went wrong");
-        }
-    }
+    useEffect(() => {
+        setCustomerDetails(myprofileData);
+    }, [myprofileData])
 
     const handleEdit = () => {
         setIsEditing(true);
     };
+
+    const retrieveMyprofile = async () => {
+        const response = await axios.get(`${REACT_APP_API_BASE_URL}user-auth/user/${userData.emailid}`);
+        return response.data;
+    }
+
+    const { isLoading: loaderMyprofile } = useQuery("myprofile", retrieveMyprofile, {
+        enabled: isEmpty(myprofileData),
+        onSuccess: (data) => dispatch(myprofileItem(data)),
+        onError: (error) => { setOpenAlert(true); setAlertMsg(error.message) }
+    });
+
+    dispatch(loader(loaderMyprofile));
 
     async function handleSaveProfile(data) {
         try {
@@ -112,10 +122,27 @@ const MyProfile = () => {
                             onChange={handleChange}
                             fullWidth
                             className={classes.textField}
-                            disabled={!isEditing}
+                            disabled={true}
                             InputLabelProps={{ shrink: true }}
                         />
+                        {/* <FormControl fullWidth>
+                            <InputLabel id="gender">Gender</InputLabel>
+                            <Select
+                                labelId="gender"
+                                name="gender"
+                                label="Gender"
+                                value={customerDetails.gender}
+                                disabled={!isEditing}
+                                InputLabelProps={{ shrink: true }}
+                                onChange={handleChange}
+                            >
+                                <MenuItem value={'Male'}>Male</MenuItem>
+                                <MenuItem value={'Female'}>Female</MenuItem>
+                                <MenuItem value={'Other'}>Other</MenuItem>
+                            </Select>
+                        </FormControl> */}
                     </Grid>
+
                     <Grid item xs={6}>
                         <TextField
                             name="fname"

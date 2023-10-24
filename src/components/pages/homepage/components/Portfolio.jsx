@@ -2,9 +2,17 @@ import React from 'react'
 import { Typography, Container, Box, Stack, Button } from '@mui/material';
 import graph from '../../../../images/graph.jpg';
 import { isEmpty } from 'lodash';
+import { useDispatch } from 'react-redux';
+import { loginPopup } from '../../../../redux/loginPopupSlice';
 
 const Portfolio = () => {
     const userData = JSON.parse(localStorage.getItem('userDetails'));
+    const dispatch = useDispatch();
+
+    const handleSignup = () => {
+        dispatch(loginPopup('signup'));
+    }
+
     return (
         <main className='hero'>
             <Box
@@ -33,7 +41,7 @@ const Portfolio = () => {
                         spacing={2}
                         justifyContent="center"
                     >
-                        {isEmpty(userData) && <Button variant="contained" sx={{ pt: 1 }} color="primary">Signup for free</Button>}
+                        {isEmpty(userData) && <Button variant="contained" sx={{ pt: 1 }} color="primary" onClick={handleSignup}>Signup for free</Button>}
                     </Stack>
                     <img sx={{ pt: 1 }} className="img-fluid" src={graph} alt='portfolio graph' />
                 </Container>

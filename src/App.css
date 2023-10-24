@@ -2,6 +2,12 @@ body {
     font-family: "RNHouseSansRegular", sans-serif;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 .img-fluid {
     width: -webkit-fill-available;
     height: -webkit-fill-available;

@@ -66,9 +66,10 @@ export default function Checkout() {
             const response = await axios.put(`http://localhost:9972/user-auth/update-user`, data);
             if (response.status === 202) {
                 localStorage.setItem('userDetails', JSON.stringify(data));
+                console.log(data);
                 setOpenAlert(true);
                 setAlertSeverity('success');
-                setAlertMsg(`You are now a ${data.title} member!!`);
+                setAlertMsg(`You are now a ${data.usertype} member!!`);
             } else {
                 setOpenAlert(true);
                 setAlertMsg("Oops..Something went wrong");
@@ -120,9 +121,15 @@ export default function Checkout() {
             } else {
                 getProfileData(id);
             }
-
+            setActiveStep(activeStep + 1);
+        } else {
+            if (!paymentObj.cname || !paymentObj.cnumber || !paymentObj.cdate || !paymentObj.cvv) {
+                setOpenAlert(true);
+                setAlertMsg("Please fill all the fields");
+            } else {
+                setActiveStep(activeStep + 1);
+            }
         }
-        setActiveStep(activeStep + 1);
     };
 
     const handleBack = () => {
