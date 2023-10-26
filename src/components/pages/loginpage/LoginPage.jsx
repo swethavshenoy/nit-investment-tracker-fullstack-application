@@ -9,6 +9,7 @@ import {
   CssBaseline,
   InputAdornment,
   IconButton,
+  Grid,
 } from "@mui/material";
 import { Email, VpnKey } from "@mui/icons-material";
 import NITLogo from "../../../images/logo.jpg";
@@ -17,6 +18,7 @@ import { REACT_APP_API_BASE_URL } from '../../../env';
 import { useDispatch } from 'react-redux';
 import { loginPopup } from '../../../redux/loginPopupSlice';
 import { Box } from "@mui/system";
+import { useForm } from "react-hook-form";
 
 const styles = {
   root: {
@@ -49,11 +51,6 @@ const styles = {
     marginBottom: "2rem",
     color: "#333",
   },
-  form: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
   inputField: {
     marginBottom: "1rem",
   },
@@ -71,29 +68,32 @@ const styles = {
 };
 
 function LoginPage() {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+  // const [formData] = useState({
+  //   email: "",
+  //   password: "",
+  // });
 
+  const { register, handleSubmit, formState: { errors }, trigger } = useForm();
   const [showPassword] = useState(false);
   const [loginStatus, setLoginStatus] = useState("");
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  // const handleChange = (e) => {
+  //   setFormData({
+  //     ...formData,
+  //     [e.target.name]: e.target.value,
+  //   });
+  // };
 
-  const handleSubmit = async (e) => {
+  const Login = async (formData, e) => {
     e.preventDefault();
 
     try {
+      console.log('inside try');
       const response = await axios.get(`${REACT_APP_API_BASE_URL}user-auth/user/${formData.email}`);
+      console.log(response);
       if (response.data.password === formData.password) {
         localStorage.setItem('userDetails', JSON.stringify(response.data));
         handleClose();
@@ -137,46 +137,69 @@ function LoginPage() {
             {loginStatus}
           </Typography>
         )}
-        <form onSubmit={handleSubmit} style={styles.form}>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            type="email"
-            onChange={handleChange}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <Email />
-                </InputAdornment>
-              ),
-            }}
-            style={styles.inputField}
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type={showPassword ? "text" : "password"}
-            id="password"
-            onChange={handleChange}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <VpnKey />
-                </InputAdornment>
-              ),
-            }}
-            style={styles.inputField}
-          />
+        <form onSubmit={handleSubmit(Login)} style={styles.form}>
+          <Grid>
+            <Grid>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                type="email"
+                // onChange={handleChange}
+                {...register('email', { required: true, pattern: /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/ })}
+                error={errors.email}
+                onKeyUp={() => {
+                  trigger("email");
+                }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Email />
+                    </InputAdornment>
+                  ),
+                }}
+                style={styles.inputField}
+              />
+              <Typography variant='caption' color='error'>
+                {errors.email?.type === 'required' && 'Email Address is required'}
+                {errors.email?.type === 'pattern' && 'Please enter a valid email'}
+              </Typography>
+            </Grid>
+            <Grid>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type={showPassword ? "text" : "password"}
+                id="password"
+                // onChange={handleChange}
+                {...register('password', { required: true })}
 
+                error={errors.password}
+                onKeyUp={() => {
+                  trigger("password");
+                }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <VpnKey />
+                    </InputAdornment>
+                  ),
+                }}
+                style={styles.inputField}
+              />
+              <Typography variant='caption' color='error'>
+                {errors.password?.type === 'required' && 'Password is required'}
+              </Typography>
+            </Grid>
+          </Grid>
           <Button
             type="submit"
             fullWidth

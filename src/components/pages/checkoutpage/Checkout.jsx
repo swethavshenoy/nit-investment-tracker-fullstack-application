@@ -18,6 +18,7 @@ import { cartItem } from '../../../redux/cartSlice'
 import { REACT_APP_API_BASE_URL } from '../../../env';
 import axios from 'axios';
 import SnackAlert from '../../shared/SnackAlert';
+import { transactionItem } from '../../../redux/transactionSlice';
 
 const steps = ['Payment details', 'Review your purchase'];
 
@@ -48,9 +49,10 @@ export default function Checkout() {
     const dispatch = useDispatch();
 
     async function handleSaveStock(data) {
-        const response = await axios.post(`http://localhost:9975/transactions/add`, data[0]);
+        const response = await axios.post(`http://localhost:9975/transactions/add-all-transaction`, data);
         if (response) {
             dispatch(cartItem({}));
+            dispatch(transactionItem([]));
             setOpenAlert(true);
             setAlertSeverity('success');
             setAlertMsg(`Transaction Successfull`);
@@ -84,8 +86,10 @@ export default function Checkout() {
         const currentDate = new Date();
         const formattedDate = currentDate.toISOString().slice(0, 10);
 
+        // var round = Math.round;
+
         const data = state.cartData.map(element => ({
-            "id": id,
+            "id": Math.floor(Math.random() * 1000) + 1,
             "emailid": userData.emailid,
             "transactionDate": formattedDate,
             "description": "Purchase",
@@ -93,7 +97,7 @@ export default function Checkout() {
             "quantity": element.count,
             "amount": element.shares
         }));
-
+        console.log(data);
         handleSaveStock(data);
     }
 

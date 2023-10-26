@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import Default from './components/default/Default';
@@ -23,23 +23,18 @@ const queryClient = new QueryClient();
 
 function App() {
 
-  const [cartData, setCartData] = useState({});
-
-  const handleCartCount = (data) => {
-    setCartData(data);
-  }
   return (
     <>
       <QueryClientProvider client={queryClient}>
         <Provider store={store}>
-          <Default cartData={cartData}>
+          <Default>
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/feature" element={<FeaturePage />} />
               <Route path="/resource" element={<ResourcePage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/esg" element={<EsgPage />} />
-              <Route path="/dashboard" element={<DashboardPage func={handleCartCount} />} />
+              <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/pricing" element={<Pricing tiersData={tiersData} />} />
               <Route path="/history" element={<TransactionHistory />} />

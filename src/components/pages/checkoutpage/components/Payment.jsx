@@ -8,6 +8,37 @@ import Checkbox from '@mui/material/Checkbox';
 export default function Payment(props) {
     const { handlePayment, paymentObj } = props;
 
+    // function isFutureDate(dateString) {
+    //     // Split the input into month and day parts
+    //     const parts = dateString.split('/');
+    //     if (parts.length !== 2) {
+    //         // Invalid format, return false
+    //         return false;
+    //     }
+
+    //     // Parse the month and day as integers
+    //     const month = parseInt(parts[0], 10);
+    //     const day = parseInt(parts[1], 10);
+
+    //     // Create a Date object for the current date
+    //     const currentDate = new Date();
+
+    //     // Set the year of the current date to the current year
+    //     const currentYear = currentDate.getFullYear();
+    //     const futureDate = new Date(currentYear, month - 1, day);
+
+    //     // Compare the future date to the current date
+    //     return futureDate > currentDate;
+    // }
+
+    // const dateInput = "";
+    // if (isFutureDate(dateInput)) {
+    //     console.log(dateInput + " is a future date.");
+    // } else {
+    //     console.log(dateInput + " is a past date.");
+    // }
+
+
     return (
         <React.Fragment>
             <Typography variant="h6" gutterBottom>

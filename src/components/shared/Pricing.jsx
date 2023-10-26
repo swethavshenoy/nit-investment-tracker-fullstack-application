@@ -22,6 +22,7 @@ const Pricing = (props) => {
                     align="center"
                     color="#5a287d"
                     gutterBottom
+                    data-testid="Our Plans & Pricing"
                 >
                     Our Plans & Pricing
                 </Typography>
