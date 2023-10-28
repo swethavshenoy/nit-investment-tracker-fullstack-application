@@ -141,7 +141,7 @@ function Register({ showLinks }) {
             console.log(formData);
             formData.usertype = "Free"
             formData.profileid = Math.floor(Math.random() * 100000) + 1;
-            await axios.post("http://localhost:9972/user-auth/save-user", formData);
+            await axios.post("http://localhost:9912/authapi/save", formData);
             // setRegistrationStatus("Registration successful");
             setOpenAlert(true);
             setAlertMsg(`Hi ${formData.fname}, your account is registered successfully, Please wait you will be redirected now to login page.`);

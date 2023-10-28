@@ -1,6 +1,5 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-
 import Default from './components/default/Default';
 import HomePage from './components/pages/homepage/HomePage';
 import FeaturePage from './components/pages/featurepage/FeaturePage';

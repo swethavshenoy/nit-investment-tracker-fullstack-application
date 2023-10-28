@@ -63,6 +63,7 @@ const MyProfile = () => {
                 setAlertSeverity('success');
                 setAlertMsg(`Profile updated successfully`);
                 localStorage.setItem('userDetails', JSON.stringify(data));
+                dispatch(myprofileItem(data))
             } else {
                 setOpenAlert(true);
                 setAlertMsg("Oops..Something went wrong");

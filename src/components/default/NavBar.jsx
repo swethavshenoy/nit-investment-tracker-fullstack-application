@@ -15,6 +15,7 @@ import { transactionItem } from '../../redux/transactionSlice';
 import { stockItem } from '../../redux/stockSlice';
 import { performanceItem } from '../../redux/performanceSlice';
 import { useLocation } from 'react-router-dom';
+import { cartItem } from '../../redux/cartSlice';
 
 function notificationsLabel(count) {
     if (count === 0) {
@@ -72,6 +73,7 @@ const NavBar = (props) => {
             dispatch(transactionItem([]))
             dispatch(myprofileItem({}))
             dispatch(performanceItem([]))
+            dispatch(cartItem([]))
         }
         navigate(`/${e.path === 'logout' ? '' : e.path}`);
         handleClose();
@@ -138,7 +140,7 @@ const NavBar = (props) => {
                     </Typography>
                 </Box>
             </Toolbar>
-            {((userData?.usertype === 'Free' && totalQty >= 5) || (userData?.usertype === 'PRO' && totalQty >= 20)) &&
+            {((userData?.usertype === 'Free' && totalQty >= 5) || (userData?.usertype === 'Pro' && totalQty >= 20)) &&
                 <Stack sx={{ width: '100%' }} spacing={2}>
                     <Alert severity="warning">Your a {userData?.usertype} member and already purchased {totalQty} quantity, Kindy Upgrade your membership to purchase more stocks</Alert>
                 </Stack>

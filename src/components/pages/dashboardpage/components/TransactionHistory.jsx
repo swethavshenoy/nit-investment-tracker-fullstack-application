@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Table, TableHead, TableBody, TableRow, TableCell, TableContainer, Paper, TextField, IconButton, Container, Typography, TableSortLabel } from '@mui/material';
+import { Table, TableHead, TableBody, TableRow, TableCell, TableContainer, Paper, TextField, IconButton, Container, Typography, TableSortLabel, TableFooter, TablePagination } from '@mui/material';
 import { Search as SearchIcon } from '@mui/icons-material';
 import { transactionTableHeader } from '../../../../constants/config';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,8 +14,10 @@ const TransactionHistory = () => {
     const dispatch = useDispatch();
     const [filter, setFilter] = useState('');
     const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' });
+    const [page, setPage] = React.useState(0);
 
     const transactionData = useSelector((state) => state.transaction);
+    const totalQty = useSelector((state) => state.totalQuantity);
 
     const handleSort = (key) => {
         let direction = 'asc';
@@ -54,11 +56,18 @@ const TransactionHistory = () => {
 
     dispatch(loader(loaderTransaction));
 
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+    };
+
     return (
         <>
             <Container align='center'>
-                <Typography variant="h4" align='center' pt={5} pb={3} color='#5a287d' gutterBottom>
+                <Typography variant="h4" align='center' pt={5} color='#5a287d' gutterBottom>
                     My Transactions
+                </Typography>
+                <Typography pb={2} color='#5a287d' sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1, alignItems: 'center' }}>
+                    Total Quantity: <Typography sx={{ backgroundColor: '#5a287d', borderRadius: '50%', width: '30px', height: '30px', color: '#fff', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> {totalQty}</Typography>
                 </Typography>
 
                 <TextField label="Filter by Name" value={filter} sx={{ width: 500, pb: 5 }} onChange={(e) => setFilter(e.target.value)}
@@ -83,14 +92,26 @@ const TransactionHistory = () => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {filteredData?.length ? filteredData.map((obj) =>
+                            {filteredData?.length ? filteredData.slice(page * 5, page * 5 + 5).map((obj) => (
                                 <TableRow key={obj.id}>
                                     {transactionTableHeader.map(el =>
                                         <TableCell style={{ color: '#5a287d' }} key={el.key}>{el.key === 'amount' ? `₹${obj.amount.toFixed(2)}` : el.key === 'transactionDate' ? new Date(obj.transactionDate).toLocaleDateString('en-GB') : obj[el.key]}</TableCell>
                                     )}
                                 </TableRow>
-                            ) : <Typography variant="h6" align='center' pt={2} pb={2} color='#5a287d' gutterBottom>No Record Found!!!</Typography>}
+                            )) : <Typography variant="h6" align='center' pt={2} pb={2} color='#5a287d' gutterBottom>No Record Found!!!</Typography>}
                         </TableBody>
+                        <TableFooter>
+                            <TableRow>
+                                <TablePagination
+                                    colSpan={3}
+                                    count={filteredData.length}
+                                    page={page}
+                                    rowsPerPage={5}
+                                    rowsPerPageOptions={[]}
+                                    onPageChange={handleChangePage}
+                                />
+                            </TableRow>
+                        </TableFooter>
                     </Table>
                 </TableContainer>
             </Container>

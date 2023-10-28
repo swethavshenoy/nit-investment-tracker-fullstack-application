@@ -19,6 +19,9 @@ import { REACT_APP_API_BASE_URL } from '../../../env';
 import axios from 'axios';
 import SnackAlert from '../../shared/SnackAlert';
 import { transactionItem } from '../../../redux/transactionSlice';
+import { performanceItem } from '../../../redux/performanceSlice';
+import { myprofileItem } from '../../../redux/myprofileSlice';
+import { stockItem } from '../../../redux/stockSlice';
 
 const steps = ['Payment details', 'Review your purchase'];
 
@@ -53,6 +56,8 @@ export default function Checkout() {
         if (response) {
             dispatch(cartItem({}));
             dispatch(transactionItem([]));
+            dispatch(performanceItem([]));
+            dispatch(stockItem([]));
             setOpenAlert(true);
             setAlertSeverity('success');
             setAlertMsg(`Transaction Successfull`);
@@ -68,10 +73,10 @@ export default function Checkout() {
             const response = await axios.put(`http://localhost:9972/user-auth/update-user`, data);
             if (response.status === 202) {
                 localStorage.setItem('userDetails', JSON.stringify(data));
-                console.log(data);
                 setOpenAlert(true);
                 setAlertSeverity('success');
                 setAlertMsg(`You are now a ${data.usertype} member!!`);
+                dispatch(myprofileItem({}));
             } else {
                 setOpenAlert(true);
                 setAlertMsg("Oops..Something went wrong");

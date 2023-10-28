@@ -1,16 +1,20 @@
 import React from 'react'
 import { Typography, Container, Box, Button, Grid, Card, CardHeader, CardContent, CardActions } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { isEmpty } from 'lodash';
+import { useDispatch } from 'react-redux';
+import { loginPopup } from '../../redux/loginPopupSlice';
 
 const Pricing = (props) => {
     const { tiersData } = props;
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const userData = JSON.parse(localStorage.getItem('userDetails'));
 
     const handlePay = (e) => {
-        navigate('/checkout', { state: e });
+        !isEmpty(userData) ? navigate('/checkout', { state: e }) : dispatch(loginPopup('login'));;
     }
 
     return (

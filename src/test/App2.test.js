@@ -5,8 +5,7 @@ import Pricing from '../components/shared/Pricing';
 
 describe('Pricing Component', () => {
     const tiersData = [
-        // Define your pricing tiers for testing
-        // Example: { title: 'Basic', price: 99, description: ['Feature 1', 'Feature 2'], buttonText: 'Pay Now' }
+
     ];
 
     it('should render pricing tiers correctly', () => {

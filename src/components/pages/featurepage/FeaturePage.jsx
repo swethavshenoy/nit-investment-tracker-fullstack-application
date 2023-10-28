@@ -7,7 +7,6 @@ import diversification from '../../../images/features/diversification.jpg';
 import BannerX from '../../shared/BannerX';
 import { useNavigate } from 'react-router-dom';
 
-
 const FeaturePage = () => {
 
     const bannerContent = { title: 'The best portfolio and investment tracker', description: 'Automatically track price, performance and investments from 240,000+ global stocks. Add cash accounts and property to get the full picture of your portfolio - all in one place.', btnText: 'Signup for free', image: portfolio };

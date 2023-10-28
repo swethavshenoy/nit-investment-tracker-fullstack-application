@@ -91,18 +91,24 @@ function LoginPage() {
     e.preventDefault();
 
     try {
-      console.log('inside try');
-      const response = await axios.get(`${REACT_APP_API_BASE_URL}user-auth/user/${formData.email}`);
-      console.log(response);
-      if (response.data.password === formData.password) {
-        localStorage.setItem('userDetails', JSON.stringify(response.data));
-        handleClose();
-        navigate("/dashboard");
+      const authResponse = await axios.post(`http://localhost:9912/authapi/login`, formData);
+      if (authResponse.status === 200) {
+        const response = await axios.get(`${REACT_APP_API_BASE_URL}user-auth/user/${formData.email}`);
+        if (response.status === 200) {
+          let userDetails = response.data;
+          delete userDetails.password
+          localStorage.setItem('userDetails', JSON.stringify(userDetails));
+          localStorage.setItem('token', JSON.stringify(authResponse.data.token));
+          handleClose();
+          navigate("/dashboard");
+        } else {
+          setLoginStatus(response.message || 'Login Failed. Please try again');
+        }
       } else {
-        setLoginStatus("Incorrect Password");
+        setLoginStatus(authResponse.message || 'Login Failed. Please check your credentials');
       }
     } catch (error) {
-      setLoginStatus(error?.response?.data?.message || 'Login Failed. Please check your credentials');
+      setLoginStatus((error?.response?.data?.messager)?.replace('_', ' ') || 'Login Failed. Please check your credentials');
     }
   };
 

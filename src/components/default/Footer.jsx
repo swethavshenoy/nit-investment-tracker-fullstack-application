@@ -39,7 +39,7 @@ export default function Footer() {
                             123 Main Street, Anytown, USA
                         </Typography>
                         <Typography variant="body2" color="#646068">
-                            Email: info@example.com
+                            Email: info@nit.com
                         </Typography>
                         <Typography variant="body2" color="#646068">
                             Phone: +1 234 567 8901
