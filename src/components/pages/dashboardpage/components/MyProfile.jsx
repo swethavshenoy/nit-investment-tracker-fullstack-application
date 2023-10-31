@@ -123,7 +123,7 @@ const MyProfile = () => {
                             onChange={handleChange}
                             fullWidth
                             className={classes.textField}
-                            disabled={true}
+                            disabled={!isEditing}
                             InputLabelProps={{ shrink: true }}
                         />
                         {/* <FormControl fullWidth>
